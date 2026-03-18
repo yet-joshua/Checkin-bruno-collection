@@ -1,0 +1,29 @@
+info:
+  name: Get Nearby Events
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{checkin}}/api/v1/events/nearby"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "latitude": 14.5995,
+        "longitude": 120.9842
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

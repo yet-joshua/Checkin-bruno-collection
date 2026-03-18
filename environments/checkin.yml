@@ -1,0 +1,6 @@
+name: checkin
+variables:
+  - name: checkin
+    value: 127.0.0.1
+  - name: auth_token
+    value: ""

@@ -1,0 +1,30 @@
+info:
+  name: User Check In
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/scan"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "qr_code_token": "zx4pgoVm3UlwoD4LtREDqLgv9yEV1qnk",
+        "latitude": 14.5995,
+        "longitude": 120.9842
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
