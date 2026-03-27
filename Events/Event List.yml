@@ -1,16 +1,19 @@
 info:
-  name: Get User Check-In Event
+  name: Event List
   type: http
-  seq: 5
+  seq: 1
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/events/2/checkins"
+  url: "{{checkin}}/api/v1/events"
   headers:
     - name: Content-Type
       value: application/json
     - name: Accept
       value: application/json
+  body:
+    type: json
+    data: ""
   auth:
     type: bearer
     token: "{{auth_token}}"

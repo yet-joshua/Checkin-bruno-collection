@@ -1,11 +1,11 @@
 info:
-  name: Get Events
+  name: User Check-In Event
   type: http
-  seq: 2
+  seq: 4
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/events"
+  url: "{{checkin}}/api/v1/events/{event_id}/checkins"
   headers:
     - name: Content-Type
       value: application/json

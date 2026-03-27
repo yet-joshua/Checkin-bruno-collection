@@ -1,11 +1,11 @@
 info:
-  name: User Check In
+  name: Event Status
   type: http
-  seq: 3
+  seq: 6
 
 http:
-  method: POST
-  url: "{{checkin}}/api/v1/scan"
+  method: PUT
+  url: "{{checkin}}/api/v1/events/019d2d41-2ef0-73b7-bb37-7e58d463030e/status"
   headers:
     - name: Content-Type
       value: application/json
@@ -13,11 +13,9 @@ http:
       value: application/json
   body:
     type: json
-    data: |
+    data: |-
       {
-        "qr_code_token": "zx4pgoVm3UlwoD4LtREDqLgv9yEV1qnk",
-        "latitude": 14.5995,
-        "longitude": 120.9842
+        "status": "published"
       }
   auth:
     type: bearer

@@ -1,0 +1,24 @@
+info:
+  name: Personal Details
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/user/personal-details"
+  body:
+    type: json
+    data: |
+      {
+        "name": "Sarah Connor",
+        "contact_number": "09187654321",
+        "gender": "female",
+        "address": "123 Tech Avenue, Silicon Valley"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

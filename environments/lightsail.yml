@@ -2,5 +2,5 @@ name: lightsail
 variables:
   - name: checkin
     value: 54.169.6.190
-  - name: auth_token
-    value: ""
+  - secret: true
+    name: auth_token

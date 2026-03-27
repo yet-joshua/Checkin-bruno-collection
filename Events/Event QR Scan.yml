@@ -1,11 +1,11 @@
 info:
-  name: Get Nearby Events
+  name: Event QR Scan
   type: http
-  seq: 5
+  seq: 2
 
 http:
-  method: GET
-  url: "{{checkin}}/api/v1/events/nearby"
+  method: POST
+  url: "{{checkin}}/api/v1/scan"
   headers:
     - name: Content-Type
       value: application/json
@@ -13,11 +13,17 @@ http:
       value: application/json
   body:
     type: json
-    data: |-
-      {
-        "latitude": 14.5995,
-        "longitude": 120.9842
+    data: "{
+
+      \  \"qr_code_token\": \"hJf5GpydAGypiexdOa6xaU2CPMagNGZH\",
+
+      \  \"latitude\": 14.5995,
+
+      \  \"longitude\": 120.9842
+
       }
+
+      \  "
   auth:
     type: bearer
     token: "{{auth_token}}"
