@@ -6,10 +6,17 @@ info:
 http:
   method: GET
   url: "{{checkin}}/api/v1/user"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: Accept
+      value: application/json
   body:
     type: json
     data: ""
-  auth: inherit
+  auth:
+    type: bearer
+    token: 5|36LGNnmQG2qyW1rccSSIuR4IyjuYUxjNe0Do4q8E0c2f99e1
 
 settings:
   encodeUrl: true
