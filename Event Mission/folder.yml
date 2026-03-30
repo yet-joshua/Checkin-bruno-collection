@@ -1,7 +1,7 @@
 info:
-  name: Events Creation
+  name: Event Mission
   type: folder
-  seq: 7
+  seq: 4
 
 request:
   auth: inherit

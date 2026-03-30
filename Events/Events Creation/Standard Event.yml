@@ -1,7 +1,7 @@
 info:
   name: Standard Event
   type: http
-  seq: 6
+  seq: 3
 
 http:
   method: POST

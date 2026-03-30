@@ -1,0 +1,22 @@
+info:
+  name: Update Event Winner
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{checkin}}/api/v1/event_id/{event_id}/winners{winner_id}"
+  body:
+    type: json
+    data: |
+      {
+        "status": "claimed",
+        "prize_name": "iPhone 17 Pro Max" // You can update any field except user_id
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

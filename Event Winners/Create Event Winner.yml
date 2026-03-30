@@ -1,0 +1,25 @@
+info:
+  name: Create Event Winner
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/event_id/{event_id}/winners/{winner_id}"
+  body:
+    type: json
+    data: |
+      {
+        "user_id": "9a1b2c3d-...",       // REQUIRED
+        "prize_name": "iPhone 17 Pro",   // REQUIRED 
+        "status": "pending",             // Optional (One of: pending, claimed, expired)
+        "is_anonymous": false,           // Optional (Boolean - defaults to false)
+        "awarded_at": "2024-03-30 14:00" // Optional (Defaults to "now" if empty)
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

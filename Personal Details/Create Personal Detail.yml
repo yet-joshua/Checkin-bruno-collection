@@ -1,0 +1,27 @@
+info:
+  name: Create Personal Detail
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/user/personal-details"
+  body:
+    type: json
+    data: |
+      {
+        "name": "Jane Doe",                 // REQUIRED 
+        "birthdate": "1995-08-24",          // Optional 
+        "contact_number": "+639123456789",  // Optional 
+        "gender": "female",                 // Optional 
+        "address": "123 Main St, City"      // Optional
+      }
+  auth:
+    type: bearer
+    token: ""
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

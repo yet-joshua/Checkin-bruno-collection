@@ -1,0 +1,15 @@
+info:
+  name: Event Winners
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{checkin}}/api/v1/event_id/{event_id}/winners"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

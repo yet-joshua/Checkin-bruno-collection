@@ -1,7 +1,7 @@
 info:
-  name: Events Creation
+  name: Event Winners
   type: folder
-  seq: 7
+  seq: 6
 
 request:
   auth: inherit
