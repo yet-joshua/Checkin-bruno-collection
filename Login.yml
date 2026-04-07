@@ -15,7 +15,7 @@ http:
     type: json
     data: |-
       {
-        "email": "admin@checkin.com",
+        "contact_number": "+639300196907",
         "password": "password"
       }
   auth: inherit

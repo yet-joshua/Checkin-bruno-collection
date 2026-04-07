@@ -10,11 +10,11 @@ http:
     type: json
     data: |-
       {
-        "email": "new_agent_test@example.com",
+        "contact_number": "+639300196907",
         "password": "Password123!",
         "password_confirmation": "Password123!"
       }
-  auth: inherit 
+  auth: inherit
 
 settings:
   encodeUrl: true
