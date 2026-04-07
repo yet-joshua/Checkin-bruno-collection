@@ -5,15 +5,16 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/register"
+  url: "{{baseUrl}}/register"
   body:
     type: json
     data: |-
       {
-        "email": "philiprizzler@example.com",
-        "password": "password"
+        "email": "new_agent_test@example.com",
+        "password": "Password123!",
+        "password_confirmation": "Password123!"
       }
-  auth: inherit
+  auth: inherit 
 
 settings:
   encodeUrl: true
