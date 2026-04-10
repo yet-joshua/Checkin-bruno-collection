@@ -1,0 +1,22 @@
+info:
+  name: Admin Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/admin/login"
+  body:
+    type: json
+    data: |-
+      {
+        "email": "admin@checkin.app",
+        "password" : "password"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

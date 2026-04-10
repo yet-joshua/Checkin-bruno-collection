@@ -8,5 +8,5 @@ variables:
     value: ""
   - name: baseUrl
     value: localhost/api/v1
-  - name: auth_token
-    value: ""
+  - secret: true
+    name: auth_token

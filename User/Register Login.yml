@@ -1,0 +1,23 @@
+info:
+  name: Register Login
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/register"
+  body:
+    type: json
+    data: |
+      {
+          "firebase_token": "required|string",
+          "password": "required|string|confirmed|min:8|mixedCase|numbers|symbols",
+          "password_confirmation": "required|string"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
