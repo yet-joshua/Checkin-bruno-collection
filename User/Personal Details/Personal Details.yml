@@ -6,9 +6,14 @@ info:
 http:
   method: GET
   url: "{{checkin}}/api/v1/user/personal-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   auth:
     type: bearer
-    token: ""
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true
