@@ -1,7 +1,7 @@
 info:
-  name: Register Login
+  name: Register Bypass
   type: http
-  seq: 3
+  seq: 5
 
 http:
   method: POST
@@ -9,13 +9,16 @@ http:
   headers:
     - name: Accept-Charset
       value: application/json
+    - name: Accept
+      value: application/json
   body:
     type: json
     data: |
       {
-          "firebase_token": "required|string",
-          "password": "required|string|confirmed|min:8|mixedCase|numbers|symbols",
-          "password_confirmation": "required|string"
+          "firebase_token": "BYPASS_TOKEN",
+          "contact_number": "+639123456789", 
+          "password": "MySecretPassword123!",
+          "password_confirmation": "MySecretPassword123!"
       }
   auth: inherit
 

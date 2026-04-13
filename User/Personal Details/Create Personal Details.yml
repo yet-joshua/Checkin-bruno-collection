@@ -19,7 +19,12 @@ http:
         "birthdate": "2002-12-25",          // Optional 
         "email": "philipabel@gmail.com",    // Optional 
         "gender": "female",                 // Optional 
-        "address": "123 Main St, Talobatib" // Optional
+        "address": "123 Main St, Talobatib", // Optional
+        "interest_ids": [
+          "9b1c2d3e-4f5g-6h7i-8j9k-0l1m2n3o4p5q", // ID for Sports
+          "1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p", // ID for Food
+          "7x8y9z0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m"  // ID for Business
+        ]
       }
   auth:
     type: bearer
