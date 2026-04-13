@@ -10,3 +10,5 @@ variables:
     value: localhost/api/v1
   - secret: true
     name: auth_token
+  - name: admin_token
+    value: ""

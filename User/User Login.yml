@@ -1,7 +1,7 @@
 info:
   name: User Login
   type: http
-  seq: 2
+  seq: 1
 
 http:
   method: POST
@@ -10,10 +10,17 @@ http:
     type: json
     data: |
       {
-          "contact_number": "required|string",
-          "password": "required|string"
+          "contact_number": "+639123456789", 
+          "password": "MySecretPassword123!"
       }
   auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const response = res.getBody();
+        bru.setEnvVar("auth_token", response.data.token);
 
 settings:
   encodeUrl: true

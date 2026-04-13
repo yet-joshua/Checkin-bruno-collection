@@ -1,0 +1,32 @@
+info:
+  name: Create Personal Details
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/user/personal-details"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "name": "Phili Abel Florida",       // REQUIRED 
+        "birthdate": "2002-12-25",          // Optional 
+        "email": "philipabel@gmail.com",    // Optional 
+        "gender": "female",                 // Optional 
+        "address": "123 Main St, Talobatib" // Optional
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

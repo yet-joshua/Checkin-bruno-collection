@@ -13,7 +13,7 @@ http:
       value: application/json
   auth:
     type: bearer
-    token: "{{auth_token}}"
+    token: 10|OcohHjOfMyNJZDZ77klKiU3VrFvkc7SafiWPUPuMdd94ed44
 
 settings:
   encodeUrl: true

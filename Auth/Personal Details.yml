@@ -15,7 +15,9 @@ http:
         "gender": "female",
         "address": "123 Tech Avenue, Silicon Valley"
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

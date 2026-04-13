@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}/register"
+  url: "{{checkin}}/api/v1/register"
   body:
     type: json
     data: |-
