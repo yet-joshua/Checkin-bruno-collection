@@ -1,7 +1,7 @@
 info:
   name: Create Personal Details
   type: http
-  seq: 4
+  seq: 3
 
 http:
   method: POST

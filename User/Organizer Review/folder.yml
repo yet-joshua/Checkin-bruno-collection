@@ -1,7 +1,7 @@
 info:
-  name: Event Check-In
+  name: Organizer Review
   type: folder
-  seq: 7
+  seq: 11
 
 request:
   auth: inherit

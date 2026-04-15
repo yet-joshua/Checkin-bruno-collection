@@ -1,22 +1,19 @@
 info:
-  name: Event Status
+  name: Delete User
   type: http
-  seq: 4
+  seq: 7
 
 http:
-  method: PUT
-  url: "{{checkin}}/api/v1/events/019d2d41-2ef0-73b7-bb37-7e58d463030e/status"
+  method: DELETE
+  url: "{{checkin}}/api/v1/delete"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
+      value: application/json
+    - name: Content-Type
       value: application/json
   body:
     type: json
-    data: |-
-      {
-        "status": "published"
-      }
+    data: ""
   auth:
     type: bearer
     token: "{{auth_token}}"

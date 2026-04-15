@@ -1,11 +1,11 @@
 info:
-  name: Pre-register
+  name: Follow Organizer
   type: http
-  seq: 7
+  seq: 2
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/validate-registration"
+  url: "{{checkin}}/api/v1/hosts/{admin_id}/follow"
   headers:
     - name: Accept
       value: application/json
@@ -13,13 +13,10 @@ http:
       value: application/json
   body:
     type: json
-    data: |
-      {
-          "contact_number": "+639211234567",
-          "password": "Password123!",
-          "password_confirmation": "Password123!"
-      }
-  auth: inherit
+    data: ""
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

@@ -1,11 +1,11 @@
 info:
-  name: Pre-register
+  name: Comment Organizer
   type: http
-  seq: 7
+  seq: 3
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/validate-registration"
+  url: "{{checkin}}/api/v1/hosts/019d8f71-08e6-71a8-955e-068b58ef53b2/reviewss"
   headers:
     - name: Accept
       value: application/json
@@ -15,11 +15,12 @@ http:
     type: json
     data: |
       {
-          "contact_number": "+639211234567",
-          "password": "Password123!",
-          "password_confirmation": "Password123!"
+        "rating": 5, //optional
+        "comment": "Great host!" //optional
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

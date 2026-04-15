@@ -1,11 +1,11 @@
 info:
-  name: Event QR Scan
+  name: Review Organizers
   type: http
-  seq: 1
+  seq: 4
 
 http:
-  method: POST
-  url: "{{checkin}}/api/v1/scan"
+  method: GET
+  url: "{{checkin}}/api/v1/hosts/019d8f71-08e6-71a8-955e-068b58ef53b2/reviews"
   headers:
     - name: Content-Type
       value: application/json
@@ -13,17 +13,7 @@ http:
       value: application/json
   body:
     type: json
-    data: "{
-
-      \  \"qr_code_token\": \"hJf5GpydAGypiexdOa6xaU2CPMagNGZH\",
-
-      \  \"latitude\": 14.5995,
-
-      \  \"longitude\": 120.9842
-
-      }
-
-      \  "
+    data: ""
   auth:
     type: bearer
     token: "{{auth_token}}"
