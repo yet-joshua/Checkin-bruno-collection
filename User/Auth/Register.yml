@@ -1,0 +1,28 @@
+info:
+  name: Register
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/auth/register"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "contact_number": "+639300196907",
+        "session_info": "AD8T5IvwIOn8_FEbGPEJ1vdhPJe58X1QsgSW72x2IUiZQvSA1UHWHpwKJE8pEEn_5pYY2YfXUlmMlxpwK1jOS3OcdSNiPeOXfGD7T-rAJb_X4SNKVg1uFU3xdrCiFWFXlnSQ6LIw6vhz4wfA9tbZHLHiYiHHwrS4ww",
+        "otp_code": "123456",
+        "password": "Password123!",
+        "password_confirmation": "Password123!"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

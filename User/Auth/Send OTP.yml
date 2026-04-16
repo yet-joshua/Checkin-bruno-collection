@@ -1,11 +1,11 @@
 info:
-  name: Register
+  name: Send OTP
   type: http
   seq: 3
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/register"
+  url: "{{checkin}}/api/v1/auth/send-otp"
   headers:
     - name: Accept
       value: application/json
@@ -13,9 +13,8 @@ http:
     type: json
     data: |
       {
-          "firebase_token": "required|string",
-          "password": "required|string|confirmed|min:8|mixedCase|numbers|symbols",
-          "password_confirmation": "required|string"
+        "contact_number": "+639300196907",
+        "recaptcha_token": "OPTIONAL_FOR_TEST_NUMBERS"
       }
   auth: inherit
 
