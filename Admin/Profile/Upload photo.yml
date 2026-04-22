@@ -1,0 +1,27 @@
+info:
+  name: Upload photo
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{checkin}}/api/v1/admin/profile/photo"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: photo
+        type: file
+        value:
+          - C:\Users\rel\Pictures\men.png
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

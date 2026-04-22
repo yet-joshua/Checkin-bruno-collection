@@ -6,6 +6,11 @@ info:
 http:
   method: POST
   url: "{{checkin}}/api/v1/admin/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   body:
     type: json
     data: |-
@@ -20,7 +25,15 @@ runtime:
     - type: after-response
       code: |-
         const response = res.getBody();
-        bru.setEnvVar("admin_token", response.data.token);
+
+        // Only try to set the token if the request actually worked!
+        if (res.getStatus() === 200 && response.status === "success") {
+            bru.setEnvVar("admin_token", response.data.token);
+            console.log("Token saved securely!");
+        } else {
+            // If it crashed, it's helpful to see why
+            console.error("Login failed. Server said:", response);
+        }
 
 settings:
   encodeUrl: true
