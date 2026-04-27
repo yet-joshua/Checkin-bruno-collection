@@ -1,0 +1,15 @@
+info:
+  name: Organizers API
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{checkin}}/api/v1/hosts/019dbe3a-2d54-7034-93f2-cf0cac391b76"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
