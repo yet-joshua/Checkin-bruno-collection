@@ -15,8 +15,7 @@ http:
       {
           "contact_number": "+639810429028",
           "password": "Password123!",
-          "password_confirmation": "Password123!",
-          "recaptcha_token" : null
+          "password_confirmation": "Password123!"
       }
 
       //Success Response
