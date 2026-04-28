@@ -13,7 +13,7 @@ http:
     type: json
     data: |
       {
-        "id_token": "eyJhbGciOiJSUzI1NiIs...", // The token returned by Firebase SDK after OTP verification
+        "firebase_token": "eyJhbGciOiJSUzI1NiIs...", // The token returned by Firebase SDK after OTP verification
         "contact_number": "09123456789",
         "password": "Password123!",
         "password_confirmation": "Password123!"
