@@ -1,0 +1,22 @@
+info:
+  name: Notifications
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{checkin}}/api/v1/user/notifications?per_page=15&page=1"
+  params:
+    - name: per_page
+      value: "15"
+      type: query
+    - name: page
+      value: "1"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
