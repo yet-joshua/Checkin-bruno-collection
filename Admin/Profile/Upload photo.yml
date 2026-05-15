@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/admin/profile/photo"
+  url: "{{checkin}}/api/v1/admin/profile/{{admin_id}}/photo"
   headers:
     - name: Accept
       value: application/json

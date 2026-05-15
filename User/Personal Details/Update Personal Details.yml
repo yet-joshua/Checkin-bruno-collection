@@ -1,7 +1,7 @@
 info:
-  name: Create Personal Details
+  name: Update Personal Details
   type: http
-  seq: 3
+  seq: 5
 
 http:
   method: POST
@@ -50,6 +50,10 @@ http:
       - name: interest_ids[]
         type: text
         value: 7x8y9z0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m
+        contentType: Text
+      - name: _method
+        type: text
+        value: PUT
         contentType: Text
   auth:
     type: bearer
