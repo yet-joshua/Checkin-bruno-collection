@@ -35,10 +35,9 @@ http:
         value: 123 Main St, Talobatib
         contentType: Text
       - name: profile_image
-        type: file
-        value:
-          - C:\Users\rel\Pictures\acthsuallu.png
-        contentType: File
+        type: text
+        value: Avatar_1
+        contentType: Text
       - name: interest_ids[]
         type: text
         value: 9b1c2d3e-4f5g-6h7i-8j9k-0l1m2n3o4p5q
