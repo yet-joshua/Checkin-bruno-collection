@@ -5,13 +5,13 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/login"
+  url: "{{checkin}}/api/v1/auth/login"
   body:
     type: json
-    data: |
+    data: |-
       {
-          "contact_number": "+639300196907", 
-          "password": "password"
+        "contact_number": "+639956421817",
+        "password" : "password"
       }
   auth: inherit
 
