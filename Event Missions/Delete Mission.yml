@@ -1,0 +1,25 @@
+info:
+  name: Delete Mission
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/events/{event_id}/missions/{mission_id}"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

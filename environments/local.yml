@@ -1,0 +1,8 @@
+name: local
+variables:
+  - name: baseUrl
+    value: http://localhost/api/v1
+  - secret: true
+    name: auth_token
+  - secret: true
+    name: admin_token

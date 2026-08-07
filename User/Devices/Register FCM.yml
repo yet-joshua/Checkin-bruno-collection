@@ -5,7 +5,12 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/user/devices"
+  url: "{{baseUrl}}/user/devices"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   body:
     type: json
     data: |-
@@ -14,30 +19,9 @@ http:
         "platform": "android",
         "device_id": "optional-client-device-id"
       }
-
-      /*Rules:
-
-      - `fcm_token`: required string.
-      - `platform`: required, one of `ios`, `android`, `web`.
-      - `device_id`: optional string.
-
-      Response:
-      {
-        "status": "success",
-        "message": "Notification device registered",
-        "data": {
-          "id": 1,
-          "user_id": "user-uuid",
-          "fcm_token": "firebase-registration-token",
-          "platform": "android",
-          "device_id": "optional-client-device-id",
-          "last_used_at": "2026-05-07T09:00:00.000000Z",
-          "created_at": "2026-05-07T09:00:00.000000Z",
-          "updated_at": "2026-05-07T09:00:00.000000Z"
-        }
-      }
-      */
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

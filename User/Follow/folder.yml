@@ -1,7 +1,9 @@
 info:
   name: Follow
   type: folder
-  seq: 5
+  seq: 6
 
 request:
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"

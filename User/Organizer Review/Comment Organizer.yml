@@ -1,11 +1,11 @@
 info:
   name: Comment Organizer
   type: http
-  seq: 3
+  seq: 1
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/hosts/019d8f71-08e6-71a8-955e-068b58ef53b2/reviewss"
+  url: "{{baseUrl}}/hosts/{admin_id}/reviews"
   headers:
     - name: Accept
       value: application/json
@@ -15,8 +15,8 @@ http:
     type: json
     data: |
       {
-        "rating": 5, //optional
-        "comment": "Great host!" //optional
+        "rating": 5,
+        "comment": "Great host!"
       }
   auth:
     type: bearer

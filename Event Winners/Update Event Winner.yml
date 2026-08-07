@@ -5,15 +5,22 @@ info:
 
 http:
   method: PUT
-  url: "{{checkin}}/api/v1/event_id/{event_id}/winners{winner_id}"
+  url: "{{baseUrl}}/events/{event_id}/winners/{winner_id}"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   body:
     type: json
     data: |
       {
         "status": "claimed",
-        "prize_name": "iPhone 17 Pro Max" // You can update any field except user_id
+        "prize_name": "iPhone 17 Pro Max"
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
 
 settings:
   encodeUrl: true

@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/admin/login"
+  url: "{{baseUrl}}/admin/login"
   headers:
     - name: Accept
       value: application/json
@@ -16,7 +16,7 @@ http:
     data: |-
       {
         "email": "admin@checkin.app",
-        "password" : "password"
+        "password": "password"
       }
   auth: inherit
 
@@ -25,13 +25,9 @@ runtime:
     - type: after-response
       code: |-
         const response = res.getBody();
-
-        // Only try to set the token if the request actually worked!
         if (res.getStatus() === 200 && response.status === "success") {
             bru.setEnvVar("admin_token", response.data.token);
-            console.log("Token saved securely!");
         } else {
-            // If it crashed, it's helpful to see why
             console.error("Login failed. Server said:", response);
         }
 

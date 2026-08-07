@@ -1,0 +1,78 @@
+info:
+  name: Create Standard Event
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: HeroApps Anniversary
+      - name: description
+        type: text
+        value: The Annual celebration of the beloved company.
+      - name: location_name
+        type: text
+        value: Tapat ng Pares Point
+      - name: start_time
+        type: text
+        value: 2026-05-01 09:00:00
+      - name: end_time
+        type: text
+        value: 2026-05-01 17:00:00
+      - name: event_type
+        type: text
+        value: standard
+      - name: requires_preregistration
+        type: text
+        value: "false"
+      - name: capacity
+        type: text
+        value: "250"
+      - name: status
+        type: text
+        value: published
+      - name: event_banner
+        type: file
+        value:
+          - /path/to/banner.jpg
+      - name: polygon_coordinates[0][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[0][lng]
+        type: text
+        value: "120.9832"
+      - name: polygon_coordinates[1][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[1][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[2][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[2][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[3][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[3][lng]
+        type: text
+        value: "120.9832"
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,9 @@
+info:
+  name: Checkins
+  type: folder
+  seq: 10
+
+request:
+  auth:
+    type: bearer
+    token: "{{admin_token}}"

@@ -5,8 +5,15 @@ info:
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/event_id/{event_id}/winners"
-  auth: inherit
+  url: "{{baseUrl}}/events/{event_id}/winners"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

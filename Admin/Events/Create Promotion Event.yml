@@ -1,0 +1,78 @@
+info:
+  name: Create Promotion Event
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Brand New App Launch
+      - name: description
+        type: text
+        value: Discover our new app and get exclusive launch perks.
+      - name: location_name
+        type: text
+        value: City Square
+      - name: start_time
+        type: text
+        value: "2026-07-10 12:00:00"
+      - name: end_time
+        type: text
+        value: "2026-07-15 20:00:00"
+      - name: event_type
+        type: text
+        value: promotion
+      - name: status
+        type: text
+        value: published
+      - name: banner_url
+        type: text
+        value: https://example.com/launch-banner.jpg
+      - name: external_link
+        type: text
+        value: https://example.com/download-app
+      - name: event_banner
+        type: file
+        value:
+          - /path/to/banner.jpg
+      - name: polygon_coordinates[0][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[0][lng]
+        type: text
+        value: "120.9832"
+      - name: polygon_coordinates[1][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[1][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[2][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[2][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[3][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[3][lng]
+        type: text
+        value: "120.9832"
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

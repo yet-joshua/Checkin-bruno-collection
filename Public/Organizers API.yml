@@ -1,11 +1,16 @@
 info:
   name: Organizers API
   type: http
-  seq: 6
+  seq: 4
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/hosts/019dbe3a-2d54-7034-93f2-cf0cac391b76"
+  url: "{{baseUrl}}/hosts/{admin_id}"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   auth: inherit
 
 settings:

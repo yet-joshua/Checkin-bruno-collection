@@ -1,16 +1,11 @@
 info:
   name: Home API
   type: http
-  seq: 5
+  seq: 1
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/home?latitude=14.124467897326587&longitude=122.94180924899203"
-  headers:
-    - name: Content-Type
-      value: application/json
-    - name: Accept
-      value: application/json
+  url: "{{baseUrl}}/home"
   params:
     - name: latitude
       value: "14.124467897326587"
@@ -18,12 +13,12 @@ http:
     - name: longitude
       value: "122.94180924899203"
       type: query
-  body:
-    type: json
-    data: ""
-  auth:
-    type: bearer
-    token: ""
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth: inherit
 
 settings:
   encodeUrl: true

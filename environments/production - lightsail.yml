@@ -1,5 +1,0 @@
-name: production - ec2
-variables:
-  - name: checkin
-    value: 13.213.228.82
-    description: ""

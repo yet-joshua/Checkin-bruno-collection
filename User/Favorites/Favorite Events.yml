@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/events/{event_uuid}/favorite"
+  url: "{{baseUrl}}/events/{event_uuid}/favorite"
   headers:
     - name: Accept
       value: application/json

@@ -1,7 +1,9 @@
 info:
   name: Personal Details
   type: folder
-  seq: 2
+  seq: 4
 
 request:
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"

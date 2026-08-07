@@ -1,11 +1,11 @@
 info:
   name: Follow Organizer
   type: http
-  seq: 2
+  seq: 1
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/hosts/{admin_id}/follow"
+  url: "{{baseUrl}}/hosts/{admin_id}/follow"
   headers:
     - name: Accept
       value: application/json

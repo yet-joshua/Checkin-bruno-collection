@@ -1,11 +1,11 @@
 info:
-  name: Upload photo
+  name: Upload Photo
   type: http
   seq: 1
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/admin/profile/{{admin_id}}/photo"
+  url: "{{baseUrl}}/admin/profile/{admin_id}/photo"
   headers:
     - name: Accept
       value: application/json
@@ -15,7 +15,7 @@ http:
       - name: photo
         type: file
         value:
-          - C:\Users\rel\Pictures\men.png
+          - /path/to/photo.png
   auth:
     type: bearer
     token: "{{admin_token}}"

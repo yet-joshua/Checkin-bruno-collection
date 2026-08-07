@@ -1,22 +1,17 @@
 info:
   name: Event List
   type: http
-  seq: 1
+  seq: 2
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/events"
+  url: "{{baseUrl}}/events"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
       value: application/json
-  body:
-    type: json
-    data: ""
-  auth:
-    type: bearer
-    token: ""
+    - name: Content-Type
+      value: application/json
+  auth: inherit
 
 settings:
   encodeUrl: true

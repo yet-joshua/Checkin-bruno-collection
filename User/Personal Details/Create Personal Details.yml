@@ -1,55 +1,29 @@
 info:
   name: Create Personal Details
   type: http
-  seq: 3
+  seq: 2
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/user/personal-details"
+  url: "{{baseUrl}}/user/personal-details"
   headers:
     - name: Accept
       value: application/json
     - name: Content-Type
       value: application/json
   body:
-    type: multipart-form
-    data:
-      - name: name
-        type: text
-        value: Philip Abel Florida
-        contentType: Text
-      - name: birthdate
-        type: text
-        value: 2002-12-15
-        contentType: Text
-      - name: email
-        type: text
-        value: philipabel@gmail.com
-        contentType: Text
-      - name: gender
-        type: text
-        value: male
-        contentType: Text
-      - name: address
-        type: text
-        value: 123 Main St, Talobatib
-        contentType: Text
-      - name: profile_image
-        type: text
-        value: Avatar_1
-        contentType: Text
-      - name: interest_ids[]
-        type: text
-        value: 9b1c2d3e-4f5g-6h7i-8j9k-0l1m2n3o4p5q
-        contentType: Text
-      - name: interest_ids[]
-        type: text
-        value: 1a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p
-        contentType: Text
-      - name: interest_ids[]
-        type: text
-        value: 7x8y9z0a-1b2c-3d4e-5f6g-7h8i9j0k1l2m
-        contentType: Text
+    type: json
+    data: |
+      {
+        "name": "Sarah Connor",
+        "birthdate": "2002-12-15",
+        "email": "sarah.connor@example.com",
+        "gender": "female",
+        "address": "123 Main St, City",
+        "interest_ids": [
+          "9b1c2d3e-4f5g-6h7i-8j9k-0l1m2n3o4p5q"
+        ]
+      }
   auth:
     type: bearer
     token: "{{auth_token}}"

@@ -5,11 +5,11 @@ info:
 
 http:
   method: DELETE
-  url: "{{checkin}}/api/v1/events/{events}/blacklists/{user}"
+  url: "{{baseUrl}}/events/{event_id}/blacklists/{user_id}"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
+      value: application/json
+    - name: Content-Type
       value: application/json
   body:
     type: json

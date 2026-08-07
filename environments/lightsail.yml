@@ -1,6 +1,8 @@
 name: lightsail
 variables:
-  - name: checkin
-    value: 54.169.6.190
+  - name: baseUrl
+    value: http://54.169.6.190/api/v1
   - secret: true
     name: auth_token
+  - secret: true
+    name: admin_token

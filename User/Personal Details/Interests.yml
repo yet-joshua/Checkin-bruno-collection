@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/interests"
+  url: "{{baseUrl}}/interests"
   headers:
     - name: Accept
       value: application/json

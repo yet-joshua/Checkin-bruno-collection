@@ -1,7 +1,9 @@
 info:
   name: Organizer Review
   type: folder
-  seq: 6
+  seq: 9
 
 request:
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"

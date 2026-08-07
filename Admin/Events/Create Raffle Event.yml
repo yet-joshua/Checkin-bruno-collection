@@ -1,0 +1,81 @@
+info:
+  name: Create Raffle Event
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Grand iPhone Giveaway
+      - name: description
+        type: text
+        value: Check in at the venue to enter the raffle automatically!
+      - name: location_name
+        type: text
+        value: Main Mall Atrium
+      - name: start_time
+        type: text
+        value: "2026-06-15 10:00:00"
+      - name: end_time
+        type: text
+        value: "2026-06-17 18:00:00"
+      - name: event_type
+        type: text
+        value: raffle
+      - name: prize_name
+        type: text
+        value: iPhone 16 Pro Max
+      - name: winner_count
+        type: text
+        value: "3"
+      - name: status
+        type: text
+        value: published
+      - name: draw_time
+        type: text
+        value: "2026-06-17 18:30:00"
+      - name: event_banner
+        type: file
+        value:
+          - /path/to/banner.jpg
+      - name: polygon_coordinates[0][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[0][lng]
+        type: text
+        value: "120.9832"
+      - name: polygon_coordinates[1][lat]
+        type: text
+        value: "14.5985"
+      - name: polygon_coordinates[1][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[2][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[2][lng]
+        type: text
+        value: "120.9852"
+      - name: polygon_coordinates[3][lat]
+        type: text
+        value: "14.6005"
+      - name: polygon_coordinates[3][lng]
+        type: text
+        value: "120.9832"
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

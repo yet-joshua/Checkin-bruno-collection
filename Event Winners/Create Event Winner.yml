@@ -5,18 +5,25 @@ info:
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/event_id/{event_id}/winners/{winner_id}"
+  url: "{{baseUrl}}/events/{event_id}/winners"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
   body:
     type: json
     data: |
       {
-        "user_id": "9a1b2c3d-...",       // REQUIRED
-        "prize_name": "iPhone 17 Pro",   // REQUIRED 
-        "status": "pending",             // Optional (One of: pending, claimed, expired)
-        "is_anonymous": false,           // Optional (Boolean - defaults to false)
-        "awarded_at": "2024-03-30 14:00" // Optional (Defaults to "now" if empty)
+        "user_id": "9a1b2c3d-...",
+        "prize_name": "iPhone 17 Pro",
+        "status": "pending",
+        "is_anonymous": false,
+        "awarded_at": "2024-03-30 14:00"
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
 
 settings:
   encodeUrl: true

@@ -1,15 +1,17 @@
 info:
-  name: Mark all read
+  name: Mark All Read
   type: http
-  seq: 3
+  seq: 4
 
 http:
   method: PATCH
-  url: "{{checkin}}/api/v1/user/notifications/read-all"
+  url: "{{baseUrl}}/user/notifications/read-all"
   body:
     type: json
     data: ""
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

@@ -1,22 +1,22 @@
 info:
   name: Blocklist User
   type: http
-  seq: 2
+  seq: 1
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/events/{events}/blacklists"
+  url: "{{baseUrl}}/events/{event_id}/blacklists"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
+      value: application/json
+    - name: Content-Type
       value: application/json
   body:
     type: json
     data: |
       {
-        "user_id": "uuid-of-the-user",   // required, must exist in users table
-        "reason": "Optional reason text"  // nullable, max 500 chars
+        "user_id": "uuid-of-the-user",
+        "reason": "Optional reason text"
       }
   auth:
     type: bearer

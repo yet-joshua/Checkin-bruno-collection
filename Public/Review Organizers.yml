@@ -1,22 +1,17 @@
 info:
   name: Review Organizers
   type: http
-  seq: 4
+  seq: 5
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/hosts/019d8f71-08e6-71a8-955e-068b58ef53b2/reviews"
+  url: "{{baseUrl}}/hosts/{admin_id}/reviews"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
       value: application/json
-  body:
-    type: json
-    data: ""
-  auth:
-    type: bearer
-    token: "{{auth_token}}"
+    - name: Content-Type
+      value: application/json
+  auth: inherit
 
 settings:
   encodeUrl: true

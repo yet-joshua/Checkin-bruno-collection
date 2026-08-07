@@ -1,19 +1,16 @@
 info:
   name: All Users
   type: http
-  seq: 4
+  seq: 2
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/users"
+  url: "{{baseUrl}}/users"
   headers:
     - name: Accept
       value: application/json
     - name: Content-Type
       value: application/json
-  body:
-    type: json
-    data: ""
   auth:
     type: bearer
     token: "{{auth_token}}"

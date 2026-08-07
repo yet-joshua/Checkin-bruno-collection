@@ -1,0 +1,8 @@
+name: production
+variables:
+  - name: baseUrl
+    value: http://13.213.228.82/api/v1
+  - secret: true
+    name: auth_token
+  - secret: true
+    name: admin_token

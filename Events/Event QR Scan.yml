@@ -1,29 +1,24 @@
 info:
   name: Event QR Scan
   type: http
-  seq: 1
+  seq: 4
 
 http:
   method: POST
-  url: "{{checkin}}/api/v1/scan"
+  url: "{{baseUrl}}/scan"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
+      value: application/json
+    - name: Content-Type
       value: application/json
   body:
     type: json
-    data: "{
-
-      \  \"qr_code_token\": \"hJf5GpydAGypiexdOa6xaU2CPMagNGZH\",
-
-      \  \"latitude\": 14.5995,
-
-      \  \"longitude\": 120.9842
-
+    data: |
+      {
+        "qr_code_token": "hJf5GpydAGypiexdOa6xaU2CPMagNGZH",
+        "latitude": 14.5995,
+        "longitude": 120.9842
       }
-
-      \  "
   auth:
     type: bearer
     token: "{{auth_token}}"

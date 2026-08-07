@@ -1,7 +1,0 @@
-info:
-  name: Device A
-  type: folder
-  seq: 1
-
-request:
-  auth: inherit

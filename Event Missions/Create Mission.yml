@@ -1,0 +1,29 @@
+info:
+  name: Create Mission
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events/{event_id}/missions"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "title": "Find the Hidden VIP Lounge",
+        "description": "Navigate to the top floor and find the red door."
+      }
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

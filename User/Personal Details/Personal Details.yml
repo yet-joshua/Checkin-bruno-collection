@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/user/personal-details"
+  url: "{{baseUrl}}/user/personal-details"
   headers:
     - name: Accept
       value: application/json

@@ -5,15 +5,15 @@ info:
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/events/019d2991-10cf-73e8-8faa-417cf7697230"
+  url: "{{baseUrl}}/events/{event_id}"
   headers:
-    - name: Content-Type
-      value: application/json
     - name: Accept
+      value: application/json
+    - name: Content-Type
       value: application/json
   auth:
     type: bearer
-    token: 10|OcohHjOfMyNJZDZ77klKiU3VrFvkc7SafiWPUPuMdd94ed44
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true

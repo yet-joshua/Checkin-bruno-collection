@@ -1,0 +1,20 @@
+info:
+  name: Unregister Device
+  type: http
+  seq: 2
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/user/devices/{device_id}"
+  body:
+    type: json
+    data: ""
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

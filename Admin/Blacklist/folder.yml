@@ -1,7 +1,9 @@
 info:
   name: Blacklist
   type: folder
-  seq: 5
+  seq: 9
 
 request:
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{admin_token}}"

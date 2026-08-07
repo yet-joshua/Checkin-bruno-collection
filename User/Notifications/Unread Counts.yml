@@ -5,8 +5,10 @@ info:
 
 http:
   method: GET
-  url: "{{checkin}}/api/v1/user/notifications/unread-count"
-  auth: inherit
+  url: "{{baseUrl}}/user/notifications/unread-count"
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true
