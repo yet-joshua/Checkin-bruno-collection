@@ -42,7 +42,8 @@ http:
       - name: event_banner
         type: file
         value:
-          - /path/to/banner.jpg
+          - /Users/yetjoshua/Downloads/299888-f9bb22.webp
+        contentType: image/webp
       - name: polygon_coordinates[0][lat]
         type: text
         value: "14.5985"

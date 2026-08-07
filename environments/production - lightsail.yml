@@ -1,4 +1,4 @@
-name: production - ec2
+name: production - lightsail
 variables:
   - name: checkin
     value: 13.213.228.82
