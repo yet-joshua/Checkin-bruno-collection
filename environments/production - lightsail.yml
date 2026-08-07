@@ -1,5 +1,7 @@
-name: production
+name: production - ec2
 variables:
+  - name: checkin
+    value: 13.213.228.82
   - name: baseUrl
     value: http://13.213.228.82/api/v1
   - secret: true
