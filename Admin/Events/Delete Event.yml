@@ -5,7 +5,7 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseUrl}}/events/{event_id}"
+  url: "{{baseUrl}}/admin/events/{event_id}"
   headers:
     - name: Accept
       value: application/json

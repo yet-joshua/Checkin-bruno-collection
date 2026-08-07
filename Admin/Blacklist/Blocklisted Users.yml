@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/events/{event_id}/blacklists"
+  url: "{{baseUrl}}/admin/events/{event_id}/blacklists"
   headers:
     - name: Accept
       value: application/json

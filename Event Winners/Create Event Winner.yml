@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}/events/{event_id}/winners"
+  url: "{{baseUrl}}/admin/events/{event_id}/winners"
   headers:
     - name: Accept
       value: application/json
