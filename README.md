@@ -42,6 +42,7 @@ For response envelopes, error codes, rate limits, and client (Android/Kotlin) in
 ## Notes
 
 - `Auth/Register` and `Auth/Reset Password` require a valid Firebase ID token (`firebase_token`) for the phone number — obtain it via the mobile app OTP flow. `BYPASS_TOKEN` only works on local/dev setups.
+- `Auth/Change Password` requires an authenticated session (`auth_token` from `Auth/Login`) and the current password.
 - `User/Personal Details/Interests.yml` is a public endpoint (`GET /interests`) included here for the personal-details workflow.
 - Requests use path variables like `{event_id}`, `{admin_id}`, `{user_id}` — replace them with real UUIDs from the database or from earlier responses before sending.
 - The `Single Session` scratch folder from the legacy collection was intentionally dropped (it contained hardcoded/leaked tokens).
