@@ -1,0 +1,20 @@
+info:
+  name: Get User
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/users/{user_id}"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

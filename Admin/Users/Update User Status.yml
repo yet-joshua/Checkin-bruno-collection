@@ -1,11 +1,11 @@
 info:
-  name: Change Password
+  name: Update User Status
   type: http
-  seq: 6
+  seq: 4
 
 http:
-  method: POST
-  url: "{{baseUrl}}/auth/change-password"
+  method: PATCH
+  url: "{{baseUrl}}/admin/users/{user_id}/status"
   headers:
     - name: Accept
       value: application/json
@@ -15,13 +15,12 @@ http:
     type: json
     data: |
       {
-        "current_password": "Password123!",
-        "password": "NewSecretPassword123!",
-        "password_confirmation": "NewSecretPassword123!"
+        "is_verified": true,
+        "is_blocked": false
       }
   auth:
     type: bearer
-    token: "{{auth_token}}"
+    token: "{{admin_token}}"
 
 settings:
   encodeUrl: true

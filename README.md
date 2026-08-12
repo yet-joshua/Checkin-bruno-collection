@@ -1,10 +1,10 @@
 # CheckIn-App Bruno Collection
 
-API test collection for the CheckIn-App Laravel API (`rewards-api/checkin-api`), using [Bruno](https://www.usebruno.com/). This repository is the standalone mirror of the collection shipped in the API repo (`checkin-api/bruno-collection/`).
+API test collection for the CheckIn-App Laravel API (`checkin-api/routes/api.php`), using [Bruno](https://www.usebruno.com/).
 
 ## Setup
 
-1. Open Bruno → `Open Collection` → select this folder.
+1. Open Bruno → `Open Collection` → select this folder (`checkin-api/bruno-collection/`).
 2. Open the **Environments** tab (`Ctrl+Shift+E` / `Cmd+Shift+E`) and create/edit the `local`, `lightsail`, or `production` environment, or point `baseUrl` at your own instance.
 3. Select the environment you want to run against.
 
@@ -37,7 +37,7 @@ Tokens are stored in the selected environment automatically after login — **ru
 
 ## API contract
 
-For response envelopes, error codes, rate limits, and client (Android/Kotlin) integration guidance, see the [`AUTHENTICATION.md`](https://github.com/HeroAppsDev/rewards-api/blob/develop/checkin-api/docs/AUTHENTICATION.md) and [`API_CONTRACT.md`](https://github.com/HeroAppsDev/rewards-api/blob/develop/checkin-api/docs/API_CONTRACT.md) in the API repository.
+For response envelopes, error codes, rate limits, and client (Android/Kotlin) integration guidance, see [`docs/API_CONTRACT.md`](../docs/API_CONTRACT.md).
 
 ## Notes
 

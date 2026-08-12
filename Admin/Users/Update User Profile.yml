@@ -1,11 +1,11 @@
 info:
-  name: Update Account
+  name: Update User Profile
   type: http
   seq: 3
 
 http:
   method: PATCH
-  url: "{{baseUrl}}/admin/accounts/{admin_id}"
+  url: "{{baseUrl}}/admin/users/{user_id}"
   headers:
     - name: Accept
       value: application/json
@@ -15,13 +15,13 @@ http:
     type: json
     data: |
       {
-        "name": "Updated Host Name",
-        "email": "host@example.com",
-        "role": "host",
-        "address": "123 Host St, Manila",
-        "bio": "Official host bio description",
+        "name": "Jane User",
+        "contact_number": "+639171234567",
+        "email": "janeuser@example.com",
         "gender": "female",
-        "birthdate": "1995-05-15"
+        "birthdate": "1998-08-20",
+        "address": "456 User Ave, Manila",
+        "bio": "App user bio text"
       }
   auth:
     type: bearer

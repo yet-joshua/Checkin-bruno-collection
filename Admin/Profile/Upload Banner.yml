@@ -1,0 +1,27 @@
+info:
+  name: Upload Banner
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/profile/{admin_id}/banner"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: banner
+        type: file
+        value:
+          - /path/to/banner.png
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

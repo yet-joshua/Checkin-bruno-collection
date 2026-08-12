@@ -1,7 +1,7 @@
-name: lightsail
+name: production
 variables:
   - name: baseUrl
-    value: http://54.169.6.190/api/v1
+    value: http://13.213.228.82/api/v1
   - secret: true
     name: auth_token
   - secret: true
