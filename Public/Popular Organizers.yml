@@ -11,7 +11,9 @@ http:
       value: application/json
     - name: Content-Type
       value: application/json
-  auth: inherit
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
 
 settings:
   encodeUrl: true
