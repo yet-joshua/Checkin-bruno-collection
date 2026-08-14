@@ -1,19 +1,14 @@
 info:
-  name: Unfollow Organizer
+  name: Followed Hosts
   type: http
-  seq: 2
+  seq: 3
 
 http:
-  method: POST
-  url: "{{baseUrl}}/hosts/{admin_id}/follow"
+  method: GET
+  url: "{{baseUrl}}/user/follows"
   headers:
     - name: Accept
       value: application/json
-    - name: Content-Type
-      value: application/json
-  body:
-    type: json
-    data: ""
   auth:
     type: bearer
     token: "{{auth_token}}"
