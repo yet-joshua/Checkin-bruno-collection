@@ -16,6 +16,7 @@ http:
     data: |
       {
         "user_id": "9a1b2c3d-...",
+        "prize_id": "9b2c3d4e-...",
         "prize_name": "iPhone 17 Pro",
         "status": "pending",
         "is_anonymous": false,

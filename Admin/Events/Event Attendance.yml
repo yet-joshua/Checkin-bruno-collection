@@ -1,0 +1,22 @@
+info:
+  name: Event Attendance
+  type: http
+  seq: 9
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/events/{event_id}/attendance"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
