@@ -1,0 +1,26 @@
+info:
+  name: Record Consent
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events/{event_id}/consent"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+  body:
+    mode: json
+    json:
+      consent_type: "raffle_entry"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
