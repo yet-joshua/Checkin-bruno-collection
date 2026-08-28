@@ -36,6 +36,9 @@ http:
       - name: capacity
         type: text
         value: "250"
+      - name: standard_settings[require_geofence]
+        type: text
+        value: "1"
       - name: status
         type: text
         value: published

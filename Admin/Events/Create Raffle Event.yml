@@ -42,6 +42,24 @@ http:
       - name: draw_time
         type: text
         value: "2026-06-17 18:30:00"
+      - name: raffle_settings[draw_mode]
+        type: text
+        value: automated
+      - name: raffle_settings[notification_mode]
+        type: text
+        value: auto
+      - name: raffle_settings[require_dti_permit]
+        type: text
+        value: "1"
+      - name: raffle_settings[require_consent]
+        type: text
+        value: "1"
+      - name: raffle_settings[require_age_verification]
+        type: text
+        value: "1"
+      - name: raffle_settings[require_geofence]
+        type: text
+        value: "1"
       - name: event_banner
         type: file
         value:
