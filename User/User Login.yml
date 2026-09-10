@@ -15,8 +15,20 @@ http:
       }
   auth: inherit
 
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const response = res.getBody();
+        if (res.getStatus() === 200 && response.status === "success") {
+            bru.setEnvVar("auth_token", response.data.token);
+        } else {
+            console.error("Login failed. Server said:", response);
+        }
+
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true
