@@ -1,0 +1,20 @@
+info:
+  name: Test Play Interactive Game
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events/{{event_id}}/test-play"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

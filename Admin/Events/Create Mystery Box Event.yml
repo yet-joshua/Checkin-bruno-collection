@@ -1,0 +1,114 @@
+info:
+  name: Create Mystery Box Event
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Mystery Box Bonanza
+      - name: description
+        type: text
+        value: Pick a box and open it to win exclusive merchandise and vouchers!
+      - name: location_name
+        type: text
+        value: Exhibition Hall
+      - name: start_time
+        type: text
+        value: "2026-06-15 10:00:00"
+      - name: end_time
+        type: text
+        value: "2026-06-17 18:00:00"
+      - name: event_type
+        type: text
+        value: interactive
+      - name: game_type
+        type: text
+        value: mystery_box
+      - name: status
+        type: text
+        value: published
+      - name: interactive_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: interactive_settings[require_checkin]
+        type: text
+        value: "1"
+      - name: interactive_settings[max_spins_per_user]
+        type: text
+        value: "3"
+      - name: interactive_settings[spin_cost_points]
+        type: text
+        value: "20"
+      - name: game_prizes[0][slice_index]
+        type: text
+        value: "0"
+      - name: game_prizes[0][label]
+        type: text
+        value: Gold Mystery Box (1,000 Points)
+      - name: game_prizes[0][prize_type]
+        type: text
+        value: points
+      - name: game_prizes[0][points_reward]
+        type: text
+        value: "1000"
+      - name: game_prizes[0][weight]
+        type: text
+        value: "10"
+      - name: game_prizes[0][quantity]
+        type: text
+        value: "5"
+      - name: game_prizes[1][slice_index]
+        type: text
+        value: "1"
+      - name: game_prizes[1][label]
+        type: text
+        value: Silver Mystery Box (T-Shirt)
+      - name: game_prizes[1][prize_type]
+        type: text
+        value: physical
+      - name: game_prizes[1][weight]
+        type: text
+        value: "20"
+      - name: game_prizes[1][quantity]
+        type: text
+        value: "20"
+      - name: game_prizes[2][slice_index]
+        type: text
+        value: "2"
+      - name: game_prizes[2][label]
+        type: text
+        value: Bronze Mystery Box (50 Points)
+      - name: game_prizes[2][prize_type]
+        type: text
+        value: points
+      - name: game_prizes[2][points_reward]
+        type: text
+        value: "50"
+      - name: game_prizes[2][weight]
+        type: text
+        value: "70"
+      - name: game_prizes[2][quantity]
+        type: text
+        value: "-1"
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

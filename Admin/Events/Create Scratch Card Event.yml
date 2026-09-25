@@ -1,0 +1,114 @@
+info:
+  name: Create Scratch Card Event
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Weekend Scratch & Win
+      - name: description
+        type: text
+        value: Scratch cards on your phone at the booth to reveal instant rewards!
+      - name: location_name
+        type: text
+        value: Main Concourse
+      - name: start_time
+        type: text
+        value: "2026-06-15 10:00:00"
+      - name: end_time
+        type: text
+        value: "2026-06-17 18:00:00"
+      - name: event_type
+        type: text
+        value: interactive
+      - name: game_type
+        type: text
+        value: scratch_card
+      - name: status
+        type: text
+        value: published
+      - name: interactive_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: interactive_settings[require_checkin]
+        type: text
+        value: "1"
+      - name: interactive_settings[max_spins_per_user]
+        type: text
+        value: "2"
+      - name: interactive_settings[allow_free_daily_spin]
+        type: text
+        value: "1"
+      - name: game_prizes[0][slice_index]
+        type: text
+        value: "0"
+      - name: game_prizes[0][label]
+        type: text
+        value: 500 Reward Points
+      - name: game_prizes[0][prize_type]
+        type: text
+        value: points
+      - name: game_prizes[0][points_reward]
+        type: text
+        value: "500"
+      - name: game_prizes[0][weight]
+        type: text
+        value: "20"
+      - name: game_prizes[0][quantity]
+        type: text
+        value: "-1"
+      - name: game_prizes[1][slice_index]
+        type: text
+        value: "1"
+      - name: game_prizes[1][label]
+        type: text
+        value: Mystery Discount Coupon
+      - name: game_prizes[1][prize_type]
+        type: text
+        value: voucher
+      - name: game_prizes[1][voucher_code_prefix]
+        type: text
+        value: SCRATCH
+      - name: game_prizes[1][weight]
+        type: text
+        value: "30"
+      - name: game_prizes[1][quantity]
+        type: text
+        value: "100"
+      - name: game_prizes[2][slice_index]
+        type: text
+        value: "2"
+      - name: game_prizes[2][label]
+        type: text
+        value: Better Luck Next Time
+      - name: game_prizes[2][prize_type]
+        type: text
+        value: no_prize
+      - name: game_prizes[2][weight]
+        type: text
+        value: "50"
+      - name: game_prizes[2][quantity]
+        type: text
+        value: "-1"
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

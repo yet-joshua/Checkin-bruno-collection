@@ -1,0 +1,20 @@
+info:
+  name: Play Interactive Game
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events/{{event_id}}/play"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
