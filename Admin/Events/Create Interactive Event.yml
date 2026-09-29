@@ -65,7 +65,7 @@ http:
         value: "100"
       - name: game_prizes[0][weight]
         type: text
-        value: "30"
+        value: "29.5"
       - name: game_prizes[0][quantity]
         type: text
         value: "-1"
