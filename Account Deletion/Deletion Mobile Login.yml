@@ -1,0 +1,38 @@
+info:
+  name: Deletion Mobile Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "contact_number": "{{deletion_phone}}",
+        "password": "{{deletion_password}}"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200) bru.setEnvVar("deletion_token", res.getBody().data.token);
+    - type: tests
+      code: |-
+        test("Expected authentication status", function () {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

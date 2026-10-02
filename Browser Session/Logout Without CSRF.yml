@@ -1,0 +1,41 @@
+info:
+  name: Logout Without CSRF
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/logout"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Origin
+      value: "{{frontendOrigin}}"
+    - name: Cookie
+      value: "{{browser_cookie}}"
+  auth: null
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const raw = res.getHeader("set-cookie") || [];
+        const jar = JSON.parse(bru.getEnvVar("browser_cookies") || "{}");
+        for (const line of (Array.isArray(raw) ? raw : [raw])) {
+          const pair = line.split(";")[0]; const index = pair.indexOf("=");
+          jar[pair.slice(0, index)] = pair.slice(index + 1);
+        }
+        bru.setEnvVar("browser_cookies", JSON.stringify(jar));
+        bru.setEnvVar("browser_cookie", Object.entries(jar).map(([k, v]) => k + "=" + v).join("; "));
+        if (jar["XSRF-TOKEN"]) bru.setEnvVar("xsrf_token", decodeURIComponent(jar["XSRF-TOKEN"]));
+    - type: tests
+      code: |-
+        test("Expected authentication status", function () {
+          expect(res.getStatus()).to.equal(419);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

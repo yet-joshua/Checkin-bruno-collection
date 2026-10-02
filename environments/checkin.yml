@@ -11,4 +11,21 @@ variables:
   - secret: true
     name: auth_token
   - secret: true
-    name: admin_token
+    name: admin_token  - name: apiOrigin
+    value: ""
+  - name: frontendOrigin
+    value: "http://localhost:5173"
+  - name: browser_admin_email
+    value: "admin@checkin.app"
+  - name: browser_admin_password
+    secret: true
+  - name: browser_cookie
+    value: ""
+  - name: xsrf_token
+    value: ""
+  - name: deletion_phone
+    value: ""
+  - name: manual_deletion_phone
+    value: ""
+  - name: deletion_password
+    secret: true
