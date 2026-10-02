@@ -1,0 +1,28 @@
+name: onboarding-test.example
+variables:
+  - name: baseUrl
+    value: http://localhost/api/v1
+  - name: apiOrigin
+    value: http://localhost
+  - name: frontendOrigin
+    value: http://localhost:5173
+  - name: admin_token
+    secret: true
+  - name: admin_id
+    value: ""
+  - name: invitation_email
+    value: new.host@checkin.app
+  - name: invitation_token
+    secret: true
+  - name: old_invitation_token
+    secret: true
+  - name: expired_invitation_token
+    secret: true
+  - name: invitation_pending_token
+    secret: true
+  - name: invitation_password
+    secret: true
+  - name: onboarding_cookie
+    value: ""
+  - name: onboarding_xsrf
+    value: ""

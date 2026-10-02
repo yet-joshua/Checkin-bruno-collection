@@ -1,0 +1,34 @@
+info:
+  name: Accept Invitation
+  type: http
+  seq: 12
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/invitations/accept"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "token": "{{invitation_token}}",
+        "password": "{{invitation_password}}",
+        "password_confirmation": "{{invitation_password}}"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Invitation lifecycle status", function () { expect(res.getStatus()).to.equal(200); });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

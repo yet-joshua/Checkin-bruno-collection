@@ -1,0 +1,33 @@
+info:
+  name: Pending Login
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "{{invitation_email}}",
+        "password": "password"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Invitation lifecycle status", function () { expect(res.getStatus()).to.equal(401); });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

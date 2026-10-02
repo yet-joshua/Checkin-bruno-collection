@@ -1,0 +1,26 @@
+info:
+  name: Resend Invitation
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/accounts/{{admin_id}}/invitation"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Invitation lifecycle status", function () { expect(res.getStatus()).to.equal(200); });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

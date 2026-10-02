@@ -16,14 +16,26 @@ http:
     data: |
       {
         "email": "new.host@checkin.app",
-        "password": "password",
-        "password_confirmation": "password",
         "name": "New Host",
         "role": "host"
       }
   auth:
     type: bearer
     token: "{{admin_token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201) bru.setEnvVar("admin_id", res.getBody().data.id);
+    - type: tests
+      code: |-
+        test("Creates a pending invitation without credentials", function () {
+          expect(res.getStatus()).to.equal(201);
+          expect(res.getBody().data.invitation_pending).to.equal(true);
+          expect(res.getBody().data).not.to.have.property("password");
+          expect(res.getBody().data).not.to.have.property("token");
+        });
 
 settings:
   encodeUrl: true
