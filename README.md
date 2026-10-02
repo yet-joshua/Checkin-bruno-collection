@@ -74,3 +74,13 @@ bru run 'Browser Session' 'Account Deletion' --env-file /tmp/auth-test-environme
 ```
 
 Mirror request and environment changes into the sibling `Checkin-bruno-collection` repository. The HTTP workflows complement Laravel regressions covering expiration, account status, password-reset invalidation, and preservation of an existing admin session during deletion.
+
+## Admin onboarding
+
+`Admin/Accounts/Create Account` now accepts name/email/role only; it saves the new account ID as `admin_id`. `Resend Invitation` replaces its pending invitation. `Admin/Accept Invitation` requires the emailed secret as `invitation_token` and a secret `invitation_password` that meets the password policy. Neither creation nor resend exposes the invitation token. Run the queue worker to deliver the email.
+
+`Admin Onboarding/` is a stateful workflow for disposable fixtures. Use `environments/onboarding-test.example.yml` as a template; supply the API origin, trusted frontend origin, creator `admin_token`, pending account email/token, and the new password. It expects `old_invitation_token` from the email before resend, `invitation_token` from the replacement email, `expired_invitation_token` from a separate expired fixture, and `invitation_pending_token` minted only in the isolated fixture setup to prove pending accounts cannot use API credentials. Start with an empty onboarding cookie jar. Never put live secrets in the committed template.
+
+Create the account, capture its emailed link, resend/capture the replacement, then run the folder in sequence. It accepts the replacement invitation and changes the fixture's password. Recreate the disposable fixtures before running the mirrored collection. Run only against a dedicated test database with log-only mail or a local mailbox. The main `Admin/Accept Invitation` request can be checked separately with another fresh invitation.
+
+Mirror all workflow/request/template changes into the sibling collection repository. Developer-specific overrides in existing environments should remain local. See `checkin-api/docs/ADMIN_ONBOARDING.md` in the backend repository for delivery configuration and contracts. Privileged-account MFA is a separate follow-up.
