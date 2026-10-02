@@ -28,7 +28,7 @@ Tokens are stored in the selected environment automatically after login — **ru
 | Folder | Base path | Auth |
 |---|---|---|
 | `Auth/` | `/auth/*`, `/logout` | none |
-| `User/` | `/user`, `/users`, `/delete`, `/hosts/*` | `{{auth_token}}` |
+| `User/` | `/user`, `/delete`, `/hosts/*` | `{{auth_token}}` |
 | `Admin/` | `/admin/*`, `/events/*` (management) | `{{admin_token}}` |
 | `Events/` | `/events`, `/events/nearby`, `/scan` | mixed |
 | `Event Missions/` | `/events/{id}/missions`, `/missions/scan` | mixed |
@@ -41,8 +41,22 @@ For response envelopes, error codes, rate limits, and client (Android/Kotlin) in
 
 ## Notes
 
-- `Auth/Register` and `Auth/Reset Password` require a valid Firebase ID token (`firebase_token`) for the phone number — obtain it via the mobile app OTP flow. `BYPASS_TOKEN` only works on local/dev setups.
+- `Auth/Register` and `Auth/Reset Password` require a valid Firebase ID token (`firebase_token`) for the phone number — obtain it via the mobile app OTP flow. There is no bypass token. Verification must be a phone sign-in within the last five minutes, for the submitted number, with a non-revoked token and an enabled Firebase account.
 - `Auth/Change Password` requires an authenticated session (`auth_token` from `Auth/Login`) and the current password.
 - `User/Personal Details/Interests.yml` is a public endpoint (`GET /interests`) included here for the personal-details workflow.
 - Requests use path variables like `{event_id}`, `{admin_id}`, `{user_id}` — replace them with real UUIDs from the database or from earlier responses before sending.
 - The `Single Session` scratch folder from the legacy collection was intentionally dropped (it contained hardcoded/leaked tokens).
+
+## Account access checks
+
+`Auth Security/` verifies mobile/admin separation and protects the legacy `/users` listing. Run mobile and super-admin login first; `Legacy User Listing` requires a super-admin `admin_token`. Blocked mobile users and inactive admins receive 403 even with an existing bearer token. Shared event reads and `/logout` remain available to both active account types.
+
+Login limits are 5 requests per normalized account per minute and 20 per IP. Forgot-password limits are 6/account and 24/IP; reset-password limits are 10/account and 40/IP. Recovery requests return the same successful response for registered and unknown contacts/emails. Set `firebase_token` from a real recent phone OTP flow before registration/reset requests.
+
+## Token lifetime and lifecycle checks
+
+Login responses include `token_expires_at`. Mobile tokens expire in 30 days and new admin tokens in 12 hours by default. Logins preserve other devices; mobile password change revokes other devices; either password-reset flow revokes all devices; logout revokes the current token.
+
+`Auth Security/` also needs `blocked_token`, `inactive_admin_token`, and `expired_token` from dedicated test fixtures. These tokens must identify a blocked user, an inactive admin, and an expired mobile token respectively.
+
+`Token Lifecycle/` is a destructive test workflow: **run it only against a dedicated test database**. Prepare a mobile fixture at `+639956421817` with password `password`, its existing second-device token as `auth_other_token`, a super-admin fixture at `admin@checkin.app`, its token as `admin_token`, and a valid broker reset token as `admin_reset_token`. Execute the folder in sequence. It changes both passwords and revokes fixture tokens. Recreate/reset fixtures before each run. The main `Auth/Change Password` request also changes credentials and revokes other devices.

@@ -22,6 +22,13 @@ http:
 
 runtime:
   scripts:
+    - type: tests
+      code: |-
+        test("Login returns a bearer token", function () {
+          expect(res.getStatus()).to.equal(200);
+          expect(res.getBody().data.token).to.be.a("string");
+          expect(Date.parse(res.getBody().data.token_expires_at)).to.be.above(Date.now());
+        });
     - type: after-response
       code: |-
         const response = res.getBody();

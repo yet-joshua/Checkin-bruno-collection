@@ -1,0 +1,28 @@
+info:
+  name: Logout Current Device
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/logout"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Token lifecycle status", function () {
+          expect(res.getStatus()).to.equal(200);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,28 @@
+info:
+  name: Blocked Mobile Profile
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{blocked_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Account access is enforced", function () {
+          expect(res.getStatus()).to.equal(403);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

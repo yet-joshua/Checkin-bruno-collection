@@ -1,0 +1,28 @@
+info:
+  name: Other Device After Change
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{auth_other_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Token lifecycle status", function () {
+          expect(res.getStatus()).to.equal(401);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

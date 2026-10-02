@@ -15,7 +15,7 @@ http:
     type: json
     data: |
       {
-        "firebase_token": "eyJhbGciOiJSUzI1NiIs...",
+        "firebase_token": "{{firebase_token}}",
         "contact_number": "+639123456789",
         "password": "Password123!",
         "password_confirmation": "Password123!"

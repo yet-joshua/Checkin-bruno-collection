@@ -19,16 +19,18 @@ runtime:
   scripts:
     - type: after-response
       code: |-
-        const response = res.getBody();
-        if (res.getStatus() === 200 && response.status === "success") {
-            bru.setEnvVar("auth_token", response.data.token);
-        } else {
-            console.error("Login failed. Server said:", response);
+        if (res.getStatus() === 200) {
+          bru.setEnvVar("auth_token", res.getBody().data.token);
         }
+    - type: tests
+      code: |-
+        test("Login returns an expiring token", function () {
+          expect(res.getStatus()).to.equal(200);
+          expect(Date.parse(res.getBody().data.token_expires_at)).to.be.above(Date.now());
+        });
 
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-  forwardAuthorizationHeader: true
