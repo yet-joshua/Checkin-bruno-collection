@@ -1,11 +1,11 @@
 info:
-  name: Logout Without CSRF
+  name: Remembered Profile
   type: http
-  seq: 6
+  seq: 4
 
 http:
-  method: POST
-  url: "{{baseUrl}}/admin/logout"
+  method: GET
+  url: "{{baseUrl}}/admin/me"
   headers:
     - name: Accept
       value: application/json
@@ -17,6 +17,12 @@ http:
 
 runtime:
   scripts:
+    - type: before-request
+      code: |-
+        const jar = JSON.parse(bru.getEnvVar("browser_cookies") || "{}");
+        const remembered = Object.entries(jar).filter(([name]) => name.startsWith("remember_web_") || name === "XSRF-TOKEN");
+        bru.setEnvVar("browser_cookies", JSON.stringify(Object.fromEntries(remembered)));
+        req.setHeader("Cookie", remembered.map(([k, v]) => k + "=" + v).join("; "));
     - type: after-response
       code: |-
         const raw = res.getHeader("set-cookie") || [];
@@ -30,8 +36,9 @@ runtime:
         if (jar["XSRF-TOKEN"]) bru.setEnvVar("xsrf_token", decodeURIComponent(jar["XSRF-TOKEN"]));
     - type: tests
       code: |-
-        test("Expected authentication status", function () {
-          expect(res.getStatus()).to.equal(419);
+        test("Remember cookie restores profile without original session", function () {
+          expect(res.getStatus()).to.equal(200);
+          expect(res.getBody().data.email).to.equal(bru.getEnvVar("browser_admin_email"));
         });
 
 settings:

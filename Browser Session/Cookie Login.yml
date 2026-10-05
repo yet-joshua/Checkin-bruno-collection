@@ -22,7 +22,8 @@ http:
     data: |-
       {
         "email": "{{browser_admin_email}}",
-        "password": "{{browser_admin_password}}"
+        "password": "{{browser_admin_password}}",
+        "remember": true
       }
   auth: null
 
@@ -43,6 +44,10 @@ runtime:
       code: |-
         test("Expected authentication status", function () {
           expect(res.getStatus()).to.equal(200);
+        });
+        test("Remember cookie is issued", function () {
+          const cookies = res.getHeader("set-cookie") || [];
+          expect((Array.isArray(cookies) ? cookies : [cookies]).some(cookie => cookie.startsWith("remember_web_"))).to.equal(true);
         });
         test("No browser bearer token", function () { expect(res.getBody().data).not.to.have.property("token"); });
 
