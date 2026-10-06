@@ -1,0 +1,47 @@
+info:
+  name: Login Version 2
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/login"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "contact_number": "{{mobile_phone}}",
+        "password": "{{mobile_password}}",
+        "auth_version": 2
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody().data;
+        if (res.getStatus() === 200) {
+          bru.setEnvVar("mobile_access", data.token);
+          bru.setEnvVar("mobile_refresh", data.refresh_token);
+          bru.setEnvVar("mobile_session", data.session_id);
+          bru.setEnvVar("mobile_expiry", data.refresh_token_expires_at);
+        }
+    - type: tests
+      code: |-
+        test("Login Version 2", function () {
+          expect(res.getStatus()).to.equal(200);
+          expect(res.getBody().data.refresh_token).to.be.a("string").with.lengthOf(64);
+          expect(Date.parse(res.getBody().data.token_expires_at)).to.be.above(Date.now());
+          expect(Date.parse(res.getBody().data.token_expires_at)).to.be.at.most(Date.now() + 16 * 60 * 1000);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

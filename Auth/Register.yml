@@ -16,11 +16,21 @@ http:
     data: |
       {
         "firebase_token": "{{firebase_token}}",
+        "auth_version": 2,
         "contact_number": "+639123456789",
         "password": "Password123!",
         "password_confirmation": "Password123!"
       }
-  auth: inherit
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Registration returns a mobile token pair", function () {
+          expect(res.getStatus()).to.equal(201);
+          expect(res.getBody().data.refresh_token).to.be.a("string").with.lengthOf(64);
+        });
 
 settings:
   encodeUrl: true

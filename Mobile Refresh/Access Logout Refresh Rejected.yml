@@ -1,0 +1,34 @@
+info:
+  name: Access Logout Refresh Rejected
+  type: http
+  seq: 23
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/refresh"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token": "{{mobile_refresh}}"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Access Logout Refresh Rejected", function () {
+          expect(res.getStatus()).to.equal(401);
+
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

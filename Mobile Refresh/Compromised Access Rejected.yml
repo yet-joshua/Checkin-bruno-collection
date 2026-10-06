@@ -1,0 +1,30 @@
+info:
+  name: Compromised Access Rejected
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{mobile_access}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Compromised Access Rejected", function () {
+          expect(res.getStatus()).to.equal(401);
+
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

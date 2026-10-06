@@ -55,7 +55,7 @@ Login limits are 5 requests per normalized account per minute and 20 per IP. For
 
 ## Token lifetime and lifecycle checks
 
-Login responses include `token_expires_at`. Mobile tokens expire in 30 days and new admin tokens in 12 hours by default. Logins preserve other devices; mobile password change revokes other devices; either password-reset flow revokes all devices; logout revokes the current token.
+Login responses include `token_expires_at`. Legacy mobile tokens expire in 30 days; v2 access tokens expire in 15 minutes with a rotating, absolute 30-day refresh session. New admin tokens expire in 12 hours by default. Logins preserve other devices; mobile password change revokes other devices and returns a replacement pair for v2 clients; either password-reset flow revokes all devices; logout revokes the current token.
 
 `Auth Security/` also needs `blocked_token`, `inactive_admin_token`, and `expired_token` from dedicated test fixtures. These tokens must identify a blocked user, an inactive admin, and an expired mobile token respectively.
 
@@ -84,3 +84,7 @@ Mirror request and environment changes into the sibling `Checkin-bruno-collectio
 Create the account, capture its emailed link, resend/capture the replacement, then run the folder in sequence. It accepts the replacement invitation and changes the fixture's password. Recreate the disposable fixtures before running the mirrored collection. Run only against a dedicated test database with log-only mail or a local mailbox. The main `Admin/Accept Invitation` request can be checked separately with another fresh invitation.
 
 Mirror all workflow/request/template changes into the sibling collection repository. Developer-specific overrides in existing environments should remain local. See `checkin-api/docs/ADMIN_ONBOARDING.md` in the backend repository for delivery configuration and contracts. Privileged-account MFA is a separate follow-up.
+
+## Mobile refresh sessions
+
+`Mobile Refresh/` exercises v2 issuance, rotation, replay revocation, password-change replacement, expired/blocked credentials, and both logout paths. Copy `environments/mobile-refresh.example.yml` into an ignored local environment. Use a disposable mobile account: the workflow changes its password. Prepare a separate expired session and directly blocked account session for the two fixture checks, and reset all fixtures before testing the mirrored collection. Runtime access/refresh credentials must remain local. Registration requires recent Firebase phone proof. See the API repository’s `checkin-api/docs/MOBILE_REFRESH_TOKENS.md` for the contract and strict replay policy.

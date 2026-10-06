@@ -1,0 +1,30 @@
+info:
+  name: Previous Access Rejected
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{mobile_old_access}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Previous Access Rejected", function () {
+          expect(res.getStatus()).to.equal(401);
+
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

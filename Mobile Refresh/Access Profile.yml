@@ -1,0 +1,30 @@
+info:
+  name: Access Profile
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{mobile_access}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Access Profile", function () {
+          expect(res.getStatus()).to.equal(200);
+
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

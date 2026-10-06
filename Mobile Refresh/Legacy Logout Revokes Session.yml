@@ -1,0 +1,30 @@
+info:
+  name: Legacy Logout Revokes Session
+  type: http
+  seq: 22
+
+http:
+  method: POST
+  url: "{{baseUrl}}/logout"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{mobile_access}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Legacy Logout Revokes Session", function () {
+          expect(res.getStatus()).to.equal(200);
+
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

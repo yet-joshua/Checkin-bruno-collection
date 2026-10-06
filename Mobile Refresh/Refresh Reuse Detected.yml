@@ -1,0 +1,34 @@
+info:
+  name: Refresh Reuse Detected
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/refresh"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token": "{{mobile_old_refresh}}"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Refresh Reuse Detected", function () {
+          expect(res.getStatus()).to.equal(401);
+          expect(res.getBody().code).to.equal("refresh_reused");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

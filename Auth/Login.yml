@@ -15,10 +15,11 @@ http:
     type: json
     data: |-
       {
+        "auth_version": 2,
         "contact_number": "+639956421817",
         "password": "password"
       }
-  auth: inherit
+  auth: null
 
 runtime:
   scripts:
@@ -27,6 +28,7 @@ runtime:
         test("Login returns a bearer token", function () {
           expect(res.getStatus()).to.equal(200);
           expect(res.getBody().data.token).to.be.a("string");
+          expect(res.getBody().data.refresh_token).to.be.a("string").with.lengthOf(64);
           expect(Date.parse(res.getBody().data.token_expires_at)).to.be.above(Date.now());
         });
     - type: after-response
@@ -34,6 +36,7 @@ runtime:
         const response = res.getBody();
         if (res.getStatus() === 200 && response.status === "success") {
           bru.setEnvVar("auth_token", response.data.token);
+          bru.setEnvVar("auth_refresh_token", response.data.refresh_token);
         } else {
           console.error("Login failed:", response);
         }

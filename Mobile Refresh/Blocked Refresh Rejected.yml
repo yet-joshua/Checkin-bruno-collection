@@ -1,0 +1,34 @@
+info:
+  name: Blocked Refresh Rejected
+  type: http
+  seq: 20
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/refresh"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refresh_token": "{{mobile_blocked_refresh}}"
+      }
+  auth: null
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Blocked Refresh Rejected", function () {
+          expect(res.getStatus()).to.equal(403);
+          expect(res.getBody().code).to.equal("account_blocked");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: false

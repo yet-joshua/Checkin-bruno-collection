@@ -1,0 +1,16 @@
+name: mobile-refresh.example
+variables:
+  - name: baseUrl
+    value: http://localhost/api/v1
+  - name: mobile_phone
+    value: ""
+  - name: mobile_password
+    value: ""
+  - name: mobile_new_password
+    value: ""
+  - name: mobile_expired_refresh
+    value: ""
+  - name: mobile_blocked_refresh
+    value: ""
+  - name: firebase_token
+    value: ""
