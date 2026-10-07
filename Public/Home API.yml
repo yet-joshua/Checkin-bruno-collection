@@ -20,6 +20,33 @@ http:
       value: application/json
   auth: inherit
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Events expose a named, open geofence boundary", function () {
+          if (res.getStatus() !== 200) throw new Error("Expected HTTP 200");
+          const payload = res.getBody().data;
+          if (!Array.isArray(payload.events) || !Array.isArray(payload.nearby_events)) {
+            throw new Error("Home event lists must both be arrays");
+          }
+          const events = [...payload.events, ...payload.nearby_events];
+          if (!Array.isArray(events)) throw new Error("Expected event array");
+          for (const event of events) {
+            if (Object.hasOwn(event, "polygon_coordinates")) throw new Error("Raw polygon must be omitted");
+            const boundary = event.geofence?.boundary;
+            if (!Array.isArray(boundary)) throw new Error("Missing geofence boundary");
+            for (const point of boundary) {
+              if (!Number.isFinite(point.latitude) || !Number.isFinite(point.longitude)) {
+                throw new Error("Expected numeric latitude and longitude");
+              }
+            }
+            if (boundary.length > 1 && JSON.stringify(boundary[0]) === JSON.stringify(boundary.at(-1))) {
+              throw new Error("Closing point must not be repeated");
+            }
+          }
+        });
+
 settings:
   encodeUrl: true
   timeout: 0
