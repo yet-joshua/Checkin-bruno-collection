@@ -1,26 +1,15 @@
 info:
-  name: Get Nearby Events
+  name: Host Details
   type: http
-  seq: 3
+  seq: 6
 
 http:
   method: GET
-  url: "{{baseUrl}}/events/nearby"
-  params:
-    - name: latitude
-      value: "14.5995"
-      type: query
-    - name: longitude
-      value: "120.9842"
-      type: query
+  url: "{{baseUrl}}/hosts/{admin_id}"
   headers:
     - name: Accept
       value: application/json
-    - name: Content-Type
-      value: application/json
-  auth:
-    type: bearer
-    token: "{{auth_token}}"
+  auth: inherit
 
 runtime:
   scripts:
@@ -28,7 +17,7 @@ runtime:
       code: |-
         test("Events expose a named, open geofence boundary", function () {
           if (res.getStatus() !== 200) throw new Error("Expected HTTP 200");
-          const events = Array.isArray(res.getBody()) ? res.getBody() : [];
+          const events = res.getBody().upcoming_events;
           if (!Array.isArray(events)) throw new Error("Expected event array");
           for (const event of events) {
             if (Object.hasOwn(event, "polygon_coordinates")) throw new Error("Raw polygon must be omitted");
