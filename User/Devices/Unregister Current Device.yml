@@ -8,10 +8,19 @@ http:
   url: "{{baseUrl}}/user/devices/current"
   body:
     type: json
-    data: ""
+    data: |-
+      { "device_id": "mobile-test-device" }
   auth:
     type: bearer
     token: "{{auth_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Mobile account request succeeds", function () {
+          if (res.getStatus() !== 200) throw new Error("Unexpected response status");
+        });
 
 settings:
   encodeUrl: true
