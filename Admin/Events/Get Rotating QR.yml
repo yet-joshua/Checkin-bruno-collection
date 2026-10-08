@@ -1,0 +1,22 @@
+info:
+  name: Get Rotating QR
+  type: http
+  seq: 15
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/events/{{event_id}}/rotating-qr"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
