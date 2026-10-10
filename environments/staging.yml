@@ -1,0 +1,26 @@
+name: staging
+variables:
+  - name: baseUrl
+    value: https://earnph.staging.heroapps.com.ph/api/v1
+  - secret: true
+    name: auth_token
+  - secret: true
+    name: admin_token
+  - name: apiOrigin
+    value: "https://earnph.staging.heroapps.com.ph"
+  - name: frontendOrigin
+    value: "https://earnph.staging.heroapps.com.ph"
+  - name: browser_admin_email
+    value: ""
+  - name: browser_admin_password
+    secret: true
+  - name: browser_cookie
+    value: ""
+  - name: xsrf_token
+    value: ""
+  - name: deletion_phone
+    value: ""
+  - name: manual_deletion_phone
+    value: ""
+  - name: deletion_password
+    secret: true
