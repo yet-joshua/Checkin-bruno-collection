@@ -5,7 +5,7 @@ info:
 
 http:
   method: PUT
-  url: "{{baseUrl}}/admin/events/{event_id}"
+  url: "{{baseUrl}}/admin/events/{{event_id}}"
   headers:
     - name: Accept
       value: application/json
@@ -15,7 +15,9 @@ http:
     type: json
     data: |
       {
-        "title": "Summer Festival 2024",
+        "title": "Sample Event",
+        "start_time": "2026-10-23T15:00:00+08:00",
+        "end_time": "2026-10-23T17:00:00+08:00",
         "location_name": "Central Park",
         "polygon_coordinates": [
           {"lat": 14.5, "lng": 121.0},
@@ -33,3 +35,6 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Event start_time/end_time represent instants. Use ISO 8601 with Z or an explicit offset; the backend normalizes accepted timestamps to UTC before storage. Raffle draw_time is configured when creating the raffle.

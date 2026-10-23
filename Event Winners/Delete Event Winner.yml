@@ -5,15 +5,12 @@ info:
 
 http:
   method: DELETE
-  url: "{{baseUrl}}/admin/events/{event_id}/winners/{winner_id}"
+  url: "{{baseUrl}}/admin/events/{{event_id}}/winners/{{winner_id}}"
   headers:
     - name: Accept
       value: application/json
     - name: Content-Type
       value: application/json
-  body:
-    type: json
-    data: ""
   auth:
     type: bearer
     token: "{{admin_token}}"
@@ -23,3 +20,8 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Raffle awards must use the raffle declaration workflow. Generic creation and deletion return 422 for raffles.
+  Existing raffle winner status/anonymity can be updated; prize_name and awarded_at are prohibited.
+  Nested event and winner IDs must match. Non-raffle awards retain their existing behavior.

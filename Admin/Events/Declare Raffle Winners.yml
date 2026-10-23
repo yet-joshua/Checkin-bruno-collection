@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{baseUrl}}/admin/events/{event_id}/raffle/declare-winners"
+  url: "{{baseUrl}}/admin/events/{{event_id}}/raffle/declare-winners"
   headers:
     - name: Accept
       value: application/json
@@ -28,3 +28,9 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Only the event host or a super-admin can declare a published physical/hybrid raffle.
+  Every selected user must be checked in, active, not blacklisted, and satisfy configured consent/age rules.
+  Duplicate users, insufficient inventory, another event's prizes, completed draws, and automatic mode return 422.
+  Success remains 201 with message and winners_count. Inbox/broadcast/push delivery is asynchronous.
