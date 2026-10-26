@@ -1,0 +1,39 @@
+info:
+  name: "Reject Empty Interactive Prizes"
+  type: "http"
+  seq: 6
+http:
+  method: "POST"
+  url: "{{baseUrl}}/admin/events/{{clearing_interactive_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+  body:
+    type: "multipart-form"
+    data:
+      -
+        name: "_method"
+        type: "text"
+        value: "PUT"
+      -
+        name: "description"
+        type: "text"
+        value: ""
+      -
+        name: "game_prizes"
+        type: "text"
+        value: "[]"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(422); });\ntest(\"Interactive minimum error\", function () { expect(res.getBody().errors.game_prizes[0]).to.equal(\"Interactive games require at least 2 prize slots.\"); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,39 @@
+info:
+  name: "Reject Locked Raffle Clearing"
+  type: "http"
+  seq: 3
+http:
+  method: "POST"
+  url: "{{baseUrl}}/admin/events/{{clearing_locked_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+  body:
+    type: "multipart-form"
+    data:
+      -
+        name: "_method"
+        type: "text"
+        value: "PUT"
+      -
+        name: "description"
+        type: "text"
+        value: ""
+      -
+        name: "prizes"
+        type: "text"
+        value: "[]"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(422); });\ntest(\"Raffle lock error\", function () { expect(res.getBody().errors).to.have.property(\"prizes\"); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

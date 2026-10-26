@@ -71,3 +71,6 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Update clearing contract (#140): omitted fields remain unchanged. Empty description/location clear to null. For multipart POST with _method=PUT, send the exact text [] for an empty interest_ids/prizes/game_prizes list; populated lists retain indexed fields and file uploads. Editable raffles may have no prizes; published/locked raffles reject prize changes. Supplied interactive game_prizes require at least two slots (422 otherwise); omitted game_prizes remain unchanged. See Event Update Clearing for isolated fixture checks.

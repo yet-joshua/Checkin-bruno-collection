@@ -1,0 +1,24 @@
+info:
+  name: "Reload Interactive After Rejection"
+  type: "http"
+  seq: 7
+http:
+  method: "GET"
+  url: "{{baseUrl}}/events/{{clearing_interactive_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(200); });\ntest(\"Rejected update preserved values\", function () { const body = res.getBody(); expect(body.description).to.equal(\"Original description\"); expect(body.game_prizes).to.have.length(2); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

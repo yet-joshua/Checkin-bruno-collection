@@ -1,0 +1,47 @@
+info:
+  name: "Clear Editable Raffle"
+  type: "http"
+  seq: 1
+http:
+  method: "POST"
+  url: "{{baseUrl}}/admin/events/{{clearing_raffle_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+  body:
+    type: "multipart-form"
+    data:
+      -
+        name: "_method"
+        type: "text"
+        value: "PUT"
+      -
+        name: "description"
+        type: "text"
+        value: ""
+      -
+        name: "location_name"
+        type: "text"
+        value: ""
+      -
+        name: "interest_ids"
+        type: "text"
+        value: "[]"
+      -
+        name: "prizes"
+        type: "text"
+        value: "[]"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(200); });\ntest(\"Text cleared in update\", function () { const body = res.getBody(); expect(body.description).to.equal(null); expect(body.location_name).to.equal(null); expect(body.interests).to.have.length(0); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5
