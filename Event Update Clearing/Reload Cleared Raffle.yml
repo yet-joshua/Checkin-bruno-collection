@@ -1,0 +1,24 @@
+info:
+  name: "Reload Cleared Raffle"
+  type: "http"
+  seq: 2
+http:
+  method: "GET"
+  url: "{{baseUrl}}/events/{{clearing_raffle_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(200); });\ntest(\"Clearing survives reload\", function () { const body = res.getBody(); expect(body.description).to.equal(null); expect(body.location_name).to.equal(null); expect(body.interests).to.have.length(0); expect(body.prizes).to.have.length(0); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5

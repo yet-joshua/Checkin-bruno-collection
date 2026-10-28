@@ -1,0 +1,24 @@
+info:
+  name: "Reload Locked Raffle Prizes"
+  type: "http"
+  seq: 5
+http:
+  method: "GET"
+  url: "{{baseUrl}}/events/{{clearing_locked_event_id}}"
+  headers:
+    -
+      name: "Accept"
+      value: "application/json"
+  auth:
+    type: "bearer"
+    token: "{{admin_token}}"
+runtime:
+  scripts:
+    -
+      type: "tests"
+      code: "test(\"Expected status\", function () { expect(res.getStatus()).to.equal(200); });\ntest(\"Omitted prizes preserved\", function () { expect(res.getBody().prizes).to.have.length(1); });"
+settings:
+  encodeUrl: true
+  timeout: 10000
+  followRedirects: true
+  maxRedirects: 5
