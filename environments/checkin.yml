@@ -11,7 +11,8 @@ variables:
   - secret: true
     name: auth_token
   - secret: true
-    name: admin_token  - name: apiOrigin
+    name: admin_token
+  - name: apiOrigin
     value: ""
   - name: frontendOrigin
     value: "http://localhost:5173"
