@@ -18,6 +18,15 @@ http:
     - name: per_page
       value: "20"
       enabled: false
+    - name: action
+      value: ""
+      enabled: false
+    - name: start_date
+      value: ""
+      enabled: false
+    - name: end_date
+      value: ""
+      enabled: false
 
 settings:
   encodeUrl: true

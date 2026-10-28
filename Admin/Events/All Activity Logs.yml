@@ -26,3 +26,9 @@ http:
     - name: search
       value: ""
       enabled: false
+    - name: start_date
+      value: ""
+      enabled: false
+    - name: end_date
+      value: ""
+      enabled: false
