@@ -28,6 +28,14 @@ http:
     type: bearer
     token: "{{auth_token}}"
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Mobile account request succeeds", function () {
+          if (res.getStatus() !== 201) throw new Error("Unexpected response status");
+        });
+
 settings:
   encodeUrl: true
   timeout: 0

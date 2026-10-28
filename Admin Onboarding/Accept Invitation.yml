@@ -42,7 +42,7 @@ runtime:
         if (jar["XSRF-TOKEN"]) bru.setEnvVar("onboarding_xsrf", decodeURIComponent(jar["XSRF-TOKEN"]));
     - type: tests
       code: |-
-        test("Invitation lifecycle status", function () { expect(res.getStatus()).to.equal(200); });
+        test("Invitation lifecycle status", function () { expect(res.getStatus()).to.equal(200); expect(res.getBody().status).to.equal("success"); });
         test("Acceptance does not issue credentials", function () { expect(res.getBody().data).to.equal(null); });
 
 settings:
