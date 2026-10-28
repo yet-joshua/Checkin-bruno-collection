@@ -5,7 +5,7 @@ info:
 
 http:
   method: PUT
-  url: "{{baseUrl}}/admin/events/{event_id}"
+  url: "{{baseUrl}}/admin/events/{{event_id}}"
   headers:
     - name: Accept
       value: application/json
@@ -15,7 +15,11 @@ http:
     type: json
     data: |
       {
-        "title": "Summer Festival 2024",
+        "title": "Sample Event",
+        "description": "Updated event description",
+        "event_mechanics": "1. Check in on time.\n2. Follow event guidelines.",
+        "start_time": "2026-10-23T15:00:00+08:00",
+        "end_time": "2026-10-23T17:00:00+08:00",
         "location_name": "Central Park",
         "polygon_coordinates": [
           {"lat": 14.5, "lng": 121.0},
@@ -33,3 +37,7 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Event start_time/end_time represent instants. Use ISO 8601 with Z or an explicit offset; the backend normalizes accepted timestamps to UTC before storage. Raffle draw_time is configured when creating the raffle.
+  Update clearing contract (#140): omitted fields remain unchanged. Empty description/location clear to null. For multipart POST with _method=PUT, send the exact text [] for an empty interest_ids/prizes/game_prizes list; populated lists retain indexed fields and file uploads. Editable raffles may have no prizes; published/locked raffles reject prize changes. Supplied interactive game_prizes require at least two slots (422 otherwise); omitted game_prizes remain unchanged. See Event Update Clearing for isolated fixture checks.

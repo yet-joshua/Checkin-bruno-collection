@@ -18,15 +18,18 @@ http:
       - name: description
         type: text
         value: Check in at the venue to enter the raffle automatically!
+      - name: event_mechanics
+        type: text
+        value: "1. Arrive at the venue.\n2. Scan the check-in QR code.\n3. Winners will be announced at draw time."
       - name: location_name
         type: text
         value: Main Mall Atrium
       - name: start_time
         type: text
-        value: "2026-06-15 10:00:00"
+        value: "2026-06-15T10:00:00+08:00"
       - name: end_time
         type: text
-        value: "2026-06-17 18:00:00"
+        value: "2026-06-17T18:00:00+08:00"
       - name: event_type
         type: text
         value: raffle
@@ -41,7 +44,7 @@ http:
         value: published
       - name: draw_time
         type: text
-        value: "2026-06-17 18:30:00"
+        value: "2026-06-17T18:30:00+08:00"
       - name: raffle_settings[draw_mode]
         type: text
         value: automated
@@ -97,3 +100,5 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+docs: |-
+  Event start_time/end_time and raffle draw_time represent instants. Use ISO 8601 with Z or an explicit offset; the backend normalizes them to UTC before storage.
