@@ -15,6 +15,18 @@ http:
     type: bearer
     token: "{{admin_token}}"
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Event blacklist returns scoped blacklisted users", function () {
+          if (res.getStatus() !== 200) throw new Error("Expected HTTP 200");
+          const body = res.getBody();
+          if (body.status !== "success" || !Array.isArray(body.data)) {
+            throw new Error("Expected blacklist data array");
+          }
+        });
+
 settings:
   encodeUrl: true
   timeout: 0

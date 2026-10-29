@@ -15,6 +15,27 @@ http:
     type: bearer
     token: "{{auth_token}}"
 
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Shared winners projection redacts voucher codes and user contact numbers", function () {
+          if (res.getStatus() !== 200) throw new Error("Expected HTTP 200");
+          const winners = res.getBody();
+          if (!Array.isArray(winners)) throw new Error("Expected winners array");
+          for (const winner of winners) {
+            if (Object.hasOwn(winner, "voucher_code")) {
+              throw new Error("Shared winner response must not expose voucher_code");
+            }
+            if (winner.is_anonymous && (winner.user_id !== null || winner.user !== null)) {
+              throw new Error("Anonymous winner must redact user_id and user relation");
+            }
+            if (winner.user && Object.hasOwn(winner.user, "contact_number")) {
+              throw new Error("Shared winner user relation must not expose contact_number");
+            }
+          }
+        });
+
 settings:
   encodeUrl: true
   timeout: 0
