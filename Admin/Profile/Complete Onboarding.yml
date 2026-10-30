@@ -1,0 +1,20 @@
+info:
+  name: Complete Onboarding
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/profile/{admin_id}/complete-onboarding"
+  headers:
+    - name: Accept
+      value: application/json
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
