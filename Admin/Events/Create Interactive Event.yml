@@ -148,3 +148,12 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Creates an interactive event with geofence validation enabled:
+  - interactive_settings[require_geofence] is set to "1".
+  - polygon_coordinates (minimum 3 coordinates) define the geofence perimeter.
+  - location_name is provided.
+  - interactive_settings[require_checkin] controls checkin requirement before playing.
+  - game_prizes configure the slices/rewards (at least 2 prizes required).
+  - event_banner uses committed relative fixture fixtures/banner.jpg.

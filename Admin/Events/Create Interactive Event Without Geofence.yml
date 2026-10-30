@@ -1,0 +1,133 @@
+info:
+  name: Create Interactive Event Without Geofence
+  type: http
+  seq: 34
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Global Virtual Spin Wheel Challenge
+      - name: description
+        type: text
+        value: Online interactive spin wheel accessible remotely to win bonus points and exclusive vouchers without geofence restrictions.
+      - name: location_name
+        type: text
+        value: ""
+      - name: start_time
+        type: text
+        value: "2026-06-15 10:00:00"
+      - name: end_time
+        type: text
+        value: "2026-06-17 18:00:00"
+      - name: event_type
+        type: text
+        value: interactive
+      - name: game_type
+        type: text
+        value: spin_wheel
+      - name: status
+        type: text
+        value: published
+      - name: interactive_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: interactive_settings[require_checkin]
+        type: text
+        value: "0"
+      - name: interactive_settings[max_spins_per_user]
+        type: text
+        value: "3"
+      - name: interactive_settings[spin_cost_points]
+        type: text
+        value: "50"
+      - name: interactive_settings[allow_free_daily_spin]
+        type: text
+        value: "1"
+      - name: game_prizes[0][slice_index]
+        type: text
+        value: "0"
+      - name: game_prizes[0][label]
+        type: text
+        value: 100 Points
+      - name: game_prizes[0][prize_type]
+        type: text
+        value: points
+      - name: game_prizes[0][points_reward]
+        type: text
+        value: "100"
+      - name: game_prizes[0][weight]
+        type: text
+        value: "29.5"
+      - name: game_prizes[0][quantity]
+        type: text
+        value: "-1"
+      - name: game_prizes[0][color]
+        type: text
+        value: "#FF6B6B"
+      - name: game_prizes[1][slice_index]
+        type: text
+        value: "1"
+      - name: game_prizes[1][label]
+        type: text
+        value: Coffee Voucher
+      - name: game_prizes[1][prize_type]
+        type: text
+        value: voucher
+      - name: game_prizes[1][voucher_code_prefix]
+        type: text
+        value: COFFEE
+      - name: game_prizes[1][weight]
+        type: text
+        value: "10"
+      - name: game_prizes[1][quantity]
+        type: text
+        value: "50"
+      - name: game_prizes[1][color]
+        type: text
+        value: "#4ECDC4"
+      - name: game_prizes[2][slice_index]
+        type: text
+        value: "2"
+      - name: game_prizes[2][label]
+        type: text
+        value: Try Again
+      - name: game_prizes[2][prize_type]
+        type: text
+        value: no_prize
+      - name: game_prizes[2][weight]
+        type: text
+        value: "60"
+      - name: game_prizes[2][quantity]
+        type: text
+        value: "-1"
+      - name: game_prizes[2][color]
+        type: text
+        value: "#CCCCCC"
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Demonstrates creating an interactive event where interactive_settings[require_geofence] is "0" (disabled).
+  - polygon_coordinates are omitted completely.
+  - location_name is optional/empty.
+  - interactive_settings[require_checkin] can be configured (0 or 1).
+  - event_banner uses committed relative fixture fixtures/banner.jpg.
