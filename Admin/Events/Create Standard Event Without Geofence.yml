@@ -1,0 +1,64 @@
+info:
+  name: Create Standard Event Without Geofence
+  type: http
+  seq: 33
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: HeroApps Virtual Global Summit
+      - name: description
+        type: text
+        value: Online company conference accessible remotely without location or geofence restrictions.
+      - name: location_name
+        type: text
+        value: ""
+      - name: start_time
+        type: text
+        value: 2026-06-01T09:00:00+08:00
+      - name: end_time
+        type: text
+        value: 2026-06-01T17:00:00+08:00
+      - name: event_type
+        type: text
+        value: standard
+      - name: requires_preregistration
+        type: text
+        value: "false"
+      - name: capacity
+        type: text
+        value: "500"
+      - name: standard_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: status
+        type: text
+        value: published
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Demonstrates creating a standard event where standard_settings[require_geofence] is "0" (disabled).
+  - polygon_coordinates are omitted completely.
+  - location_name is optional/empty.
+  - prize tiers (prizes) are omitted (prohibited for standard events).
+  - event_banner uses committed relative fixture fixtures/banner.jpg.

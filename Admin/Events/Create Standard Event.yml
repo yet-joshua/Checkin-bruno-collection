@@ -79,3 +79,12 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
+docs: |-
+  Creates a standard event with geofence validation enabled:
+  - standard_settings[require_geofence] is set to "1".
+  - polygon_coordinates (minimum 3 coordinates) define the geofence perimeter.
+  - location_name is provided.
+  - event_banner uses committed relative fixture fixtures/banner.jpg.
+  - prize tiers (prizes) are prohibited for standard events and must not be supplied.
+
