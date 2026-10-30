@@ -1,0 +1,88 @@
+info:
+  name: Create Raffle Event Without Geofence
+  type: http
+  seq: 32
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Grand iPhone Nationwide Online Raffle
+      - name: description
+        type: text
+        value: Virtual raffle open to all verified participants without geofence restrictions.
+      - name: event_mechanics
+        type: text
+        value: "1. Join event in app.\n2. Complete entry tasks.\n3. Winners will be announced at draw time."
+      - name: location_name
+        type: text
+        value: ""
+      - name: start_time
+        type: text
+        value: "2026-06-15T10:00:00+08:00"
+      - name: end_time
+        type: text
+        value: "2026-06-17T18:00:00+08:00"
+      - name: event_type
+        type: text
+        value: raffle
+      - name: prize_name
+        type: text
+        value: iPhone 16 Pro Max
+      - name: winner_count
+        type: text
+        value: "3"
+      - name: status
+        type: text
+        value: published
+      - name: draw_time
+        type: text
+        value: "2026-06-17T18:30:00+08:00"
+      - name: raffle_settings[draw_mode]
+        type: text
+        value: automated
+      - name: raffle_settings[notification_mode]
+        type: text
+        value: auto
+      - name: raffle_settings[require_dti_permit]
+        type: text
+        value: "1"
+      - name: raffle_settings[dti_permit_number]
+        type: text
+        value: DTI-FTEB-123456
+      - name: raffle_settings[require_consent]
+        type: text
+        value: "1"
+      - name: raffle_settings[require_age_verification]
+        type: text
+        value: "1"
+      - name: raffle_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Demonstrates creating a raffle event where raffle_settings[require_geofence] is "0" (disabled).
+  - polygon_coordinates are omitted completely.
+  - location_name is optional/empty.
+  - raffle_settings[require_age_verification] is locked to 1 (18+).
+  - raffle_settings[dti_permit_number] is required when require_dti_permit is 1.
+  - event_banner uses committed relative fixture fixtures/banner.jpg.

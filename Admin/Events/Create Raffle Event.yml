@@ -54,6 +54,9 @@ http:
       - name: raffle_settings[require_dti_permit]
         type: text
         value: "1"
+      - name: raffle_settings[dti_permit_number]
+        type: text
+        value: DTI-FTEB-123456
       - name: raffle_settings[require_consent]
         type: text
         value: "1"
@@ -102,3 +105,4 @@ settings:
   maxRedirects: 5
 docs: |-
   Event start_time/end_time and raffle draw_time represent instants. Use ISO 8601 with Z or an explicit offset; the backend normalizes them to UTC before storage.
+  Raffle compliance: require_age_verification is locked to 1 (18+). If require_dti_permit is 1, raffle_settings[dti_permit_number] is required.
