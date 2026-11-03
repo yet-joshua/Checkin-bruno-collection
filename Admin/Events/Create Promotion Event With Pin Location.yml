@@ -1,0 +1,63 @@
+info:
+  name: Create Promotion Event With Pin Location
+  type: http
+  seq: 35
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/events"
+  headers:
+    - name: Accept
+      value: application/json
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        type: text
+        value: Daet Food Festival Promo
+      - name: description
+        type: text
+        value: Exclusive discounts and perks at Daet Food Strip without polygon boundary restriction.
+      - name: location_name
+        type: text
+        value: Daet Food Strip
+      - name: latitude
+        type: text
+        value: "14.1215"
+      - name: longitude
+        type: text
+        value: "122.9455"
+      - name: start_time
+        type: text
+        value: "2026-08-10 12:00:00"
+      - name: end_time
+        type: text
+        value: "2026-08-15 20:00:00"
+      - name: event_type
+        type: text
+        value: promotion
+      - name: status
+        type: text
+        value: published
+      - name: banner_url
+        type: text
+        value: https://example.com/daet-food-festival.jpg
+      - name: external_link
+        type: text
+        value: https://example.com/daet-promo-info
+      - name: promotion_settings[require_geofence]
+        type: text
+        value: "0"
+      - name: event_banner
+        type: file
+        value:
+          - fixtures/banner.jpg
+  auth:
+    type: bearer
+    token: "{{admin_token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

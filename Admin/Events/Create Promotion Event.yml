@@ -21,6 +21,12 @@ http:
       - name: location_name
         type: text
         value: City Square
+      - name: latitude
+        type: text
+        value: "14.5996"
+      - name: longitude
+        type: text
+        value: "120.9841"
       - name: start_time
         type: text
         value: "2026-07-10 12:00:00"
@@ -39,6 +45,9 @@ http:
       - name: external_link
         type: text
         value: https://example.com/download-app
+      - name: promotion_settings[require_geofence]
+        type: text
+        value: "1"
       - name: event_banner
         type: file
         value:
