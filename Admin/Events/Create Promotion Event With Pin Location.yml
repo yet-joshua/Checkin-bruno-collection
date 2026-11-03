@@ -39,9 +39,6 @@ http:
       - name: status
         type: text
         value: published
-      - name: banner_url
-        type: text
-        value: https://example.com/daet-food-festival.jpg
       - name: external_link
         type: text
         value: https://example.com/daet-promo-info
@@ -61,3 +58,4 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+
