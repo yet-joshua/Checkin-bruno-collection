@@ -60,5 +60,5 @@ docs: |-
   Demonstrates creating a standard event where standard_settings[require_geofence] is "0" (disabled).
   - polygon_coordinates are omitted completely.
   - location_name is optional/empty.
-  - prize tiers (prizes) are omitted (prohibited for standard events).
+  - prize tiers (prizes) are optional for standard events.
   - event_banner uses committed relative fixture fixtures/banner.jpg.
