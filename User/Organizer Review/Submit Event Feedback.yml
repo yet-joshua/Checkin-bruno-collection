@@ -1,0 +1,37 @@
+info:
+  name: Submit Event Feedback
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/events/{{event_id}}/reviews"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |
+      {
+        "rating": 5,
+        "comment": "Great event experience!"
+      }
+  auth:
+    type: bearer
+    token: "{{auth_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Post-event feedback submission succeeds", function () {
+          if (res.getStatus() !== 200) throw new Error("Unexpected response status");
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

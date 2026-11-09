@@ -16,11 +16,20 @@ http:
     data: |
       {
         "rating": 5,
-        "comment": "Great host!"
+        "comment": "Great host!",
+        "event_id": "{{event_id}}"
       }
   auth:
     type: bearer
     token: "{{auth_token}}"
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("Mobile account request succeeds", function () {
+          if (res.getStatus() !== 200) throw new Error("Unexpected response status");
+        });
 
 settings:
   encodeUrl: true
