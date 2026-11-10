@@ -1,0 +1,8 @@
+name: earnph - staging
+variables:
+  - secret: true
+    name: auth_token
+  - secret: true
+    name: admin_token
+  - name: baseUrl
+    value: http://earnph.staging.heroapps.com.ph/api/v1

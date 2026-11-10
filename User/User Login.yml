@@ -10,7 +10,7 @@ http:
     type: json
     data: |
       {
-        "contact_number": "+639171000002",
+        "contact_number": "+639171000003",
         "password": "password"
       }
   auth: inherit
